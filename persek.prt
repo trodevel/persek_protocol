@@ -1,0 +1,606 @@
+############################################################
+#
+# Persek Protocol messages.
+#
+# Copyright (C) 2015 Sergey Kolevatov
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+
+# $Revision: 13419 $ $Date:: 2020-08-02 #$ $Author: serge $
+
+############################################################
+
+protocol persek
+
+############################################################
+
+base generic_protocol
+
+use basic_objects
+use dtmf_tools
+use lang_tools
+
+############################################################
+
+extern generic_protocol::Request string
+extern generic_protocol::BackwardMessage
+
+############################################################
+
+base_msg Request: generic_protocol::Request
+
+base_msg_end
+
+############################################################
+
+base_msg BackwardMessage
+
+base_msg_end
+
+############################################################
+
+enum voice_e
+
+    UNDEF     = 0
+    MALE_A    = 1
+    FEMALE_A  = 2
+
+enum_end
+
+enum urgency_e
+
+    UNDEF       = 0
+    IMMEDIATE   = 1
+    TIMED       = 2
+
+enum_end
+
+
+obj JobOptions
+
+    e voice_e           voice
+    e urgency_e         urgency
+    e lang_tools::lang_e lang
+    uint32              exec_time      // epoch, seconds
+    uint32              max_tries
+    bool                redial_if_no_feedback
+    o basic_objects::TimeWindow time_window
+    o basic_objects::Weekdays   weekdays_mask
+
+obj_end
+
+enum JobInfo_type_e
+
+    UNDEF         = 0
+    SAY           = 1
+    SAY_FEEDBACK  = 2
+    FSM           = 3
+    REMINDER      = 4
+
+enum_end
+
+
+obj JobInfo
+
+    uint32          job_id
+    uint32          user_id
+    e JobInfo_type_e          type
+    string          contact
+    uint32          creation_time
+    o JobOptions    options
+
+obj_end
+
+enum exit_status_e
+
+    DONE        = 0
+    CANCELLED
+    FAILED
+    REFUSED_BY_RECIPIENT
+    ABORTED_BY_RECIPIENT
+
+enum_end
+
+obj ClosedJobStatus
+
+
+    uint32                  job_id
+    e exit_status_e         exit_code
+    array< uint32 >         feedback
+    uint32                  num_tries
+    uint32                  timestamp
+    string                  comment
+
+obj_end
+
+enum OpenJobStatus_state_e
+
+    IDLE                 = 1
+    WAITING_PROC_STARTED = 2
+    ACTIVE               = 3
+    WRONG_ACTIVE         = 4
+    CANCELLED_IN_A       = 5
+    CANCELLED_IN_WPS     = 6
+    COMPLETED            = 7
+    WAITING_REDIAL_TIMER = 8
+
+enum_end
+
+obj OpenJobStatus
+
+    uint32          job_id
+    e OpenJobStatus_state_e         state
+    uint32          current_try
+    uint32          timestamp
+    uint32          next_exec_time // epoch, seconds
+
+obj_end
+
+msg GetJobInfoRequest: Request
+
+    uint32                  user_id
+    array<uint32>           job_ids
+
+msg_end
+
+msg GetJobInfoResponse: BackwardMessage
+
+    array<o JobInfo>        jobs
+
+msg_end
+
+msg GetJobStatRequest: Request
+
+    uint32                  user_id
+    array<uint32>           job_ids
+
+msg_end
+
+msg GetJobStatResponse: BackwardMessage
+
+    array<o OpenJobStatus>     open_jobs
+    array<o ClosedJobStatus>   closed_jobs
+
+msg_end
+
+enum FindJobRequest_status_e
+
+    ANY     = 0
+    OPEN    = 1
+    CLOSED  = 2
+
+enum_end
+
+msg FindJobRequest: Request
+
+    uint32          user_id
+    e FindJobRequest_status_e        status
+
+    string          contact_regex
+
+    o basic_objects::TimeRange    creation_time_range
+    o basic_objects::TimeRange    exec_time_range
+    o basic_objects::TimeRange    update_time_range
+
+    uint32          max_results
+    uint32          offset
+
+msg_end
+
+msg FindJobResponse: BackwardMessage
+
+    uint32                      total_size # total number of found jobs
+    array<uint32>               job_ids
+
+msg_end
+
+msg FindTemplatesRequest: Request
+
+    uint32              user_id
+
+    uint32              category_id
+
+    string              name_regex
+
+    e lang_tools::lang_e lang
+
+msg_end
+
+obj TemplateInfo
+
+    uint32              id
+    uint32              category_id
+    string              name
+    e lang_tools::lang_e lang
+    string              localized_name
+    array<string>       placeholders
+
+obj_end
+
+msg FindTemplatesResponse: BackwardMessage
+
+    array<o TemplateInfo>  templates
+
+msg_end
+
+msg CancelJobRequest: Request
+
+    uint32                      job_id
+
+msg_end
+
+msg CancelJobResponse: BackwardMessage
+
+msg_end
+
+msg CancelJobsRequest: Request
+
+    array<uint32>              job_ids
+
+msg_end
+
+obj CancellationFailureReason
+
+    uint32          job_id
+    e generic_protocol::ErrorResponse_type_e         type
+    string          descr
+
+obj_end
+
+msg CancelJobsResponse: BackwardMessage
+
+    array<uint32>                        cancelled_job_ids
+    array<o CancellationFailureReason>   failed_jobs
+
+msg_end
+
+msg SayRequest: Request
+
+    uint32              user_id
+    string              contact_id
+    uint32              msg_templ_id
+    map<string,string>  params
+
+    o JobOptions          options
+
+msg_end
+
+msg SayResponse: BackwardMessage
+
+    uint32          job_id
+
+msg_end
+
+enum action_type_e
+
+    NONE = 0
+    REPEAT = 1
+    DROP = 2
+
+enum_end
+
+obj Action
+
+    e action_type_e type
+    uint32          msg_templ_id
+
+obj_end
+
+msg SayFeedbackRequest: Request
+
+    uint32          user_id
+    string          contact_id
+    uint32          msg_templ_id
+    uint32          feedback_templ_id
+    map<string,string>                      params
+    map<e dtmf_tools::tone_e, o Action>     actions
+
+    o JobOptions     options
+
+msg_end
+
+msg SayFeedbackResponse: BackwardMessage
+
+    uint32          job_id
+
+msg_end
+
+enum ContactPhone_type_e
+
+    DFLT        = 0
+    LANDLINE    = 1
+    MOBILE      = 2
+
+enum_end
+
+obj ContactPhone
+
+    e ContactPhone_type_e   type
+    string                  phone_number
+
+obj_end
+
+obj ContactPhoneWithId
+
+    uint32          contact_phone_id
+    o ContactPhone  contact_phone
+
+obj_end
+
+msg AddContactPhoneRequest: Request
+
+    uint32          contact_id
+    o ContactPhone  contact_phone
+
+msg_end
+
+msg AddContactPhoneResponse: BackwardMessage
+
+    uint32          contact_phone_id
+
+msg_end
+
+msg ModifyContactPhoneRequest: Request
+
+    uint32          contact_phone_id
+    o ContactPhone  contact_phone
+
+msg_end
+
+msg ModifyContactPhoneResponse: BackwardMessage
+
+msg_end
+
+msg DeleteContactPhoneRequest: Request
+
+    uint32          contact_phone_id
+
+msg_end
+
+msg DeleteContactPhoneResponse: BackwardMessage
+
+msg_end
+
+msg GetContactPhoneRequest: Request
+
+    uint32          contact_phone_id
+
+msg_end
+
+msg GetContactPhoneResponse: BackwardMessage
+
+    uint32          contact_id
+    o ContactPhone  contact_phone
+
+msg_end
+
+enum gender_e
+
+    UNDEF   = 0
+    MALE    = 1
+    FEMALE  = 2
+
+enum_end
+
+obj Contact
+
+    e gender_e              gender
+    string                  name
+    string                  first_name
+    o basic_objects::Date   birthday
+    string                  notice
+
+obj_end
+
+obj ExtendedContactInfo
+
+    e voice_e               voice
+    e lang_tools::lang_e    lang
+    uint32                  max_tries
+    bool                    redial_if_no_feedback
+    o basic_objects::TimeWindow time_window
+    o basic_objects::Weekdays   weekdays
+
+obj_end
+
+msg AddContactRequest: Request
+
+    uint32          user_id
+    o Contact       contact
+
+msg_end
+
+msg AddContactResponse: BackwardMessage
+
+    uint32          contact_id
+
+msg_end
+
+msg ModifyContactRequest: Request
+
+    uint32          contact_id
+    o Contact       contact
+
+msg_end
+
+msg ModifyContactResponse: BackwardMessage
+
+msg_end
+
+msg DeleteContactRequest: Request
+
+    uint32          contact_id
+
+msg_end
+
+msg DeleteContactResponse: BackwardMessage
+
+msg_end
+
+msg GetContactRequest: Request
+
+    uint32          contact_id
+
+msg_end
+
+msg GetContactResponse: BackwardMessage
+
+    o Contact       contact
+    array<uint32>   contact_phone_ids
+
+msg_end
+
+msg GetContactWithPhonesRequest: Request
+
+    uint32          contact_id
+
+msg_end
+
+msg GetContactWithPhonesResponse: BackwardMessage
+
+    o Contact                    contact
+    array<o ContactPhoneWithId>  contact_phones
+
+msg_end
+
+msg GetContactExtRequest: Request
+
+    uint32          contact_id
+
+msg_end
+
+msg GetContactExtResponse: BackwardMessage
+
+    o Contact                       contact
+    array<o ContactPhoneWithId>     contact_phones
+    o ExtendedContactInfo           extended_info
+
+msg_end
+
+msg GetExtendedContactInfoRequest: Request
+
+    uint32                          contact_id
+
+msg_end
+
+msg GetExtendedContactInfoResponse: BackwardMessage
+
+    o ExtendedContactInfo           extended_info
+
+msg_end
+
+msg SetExtendedContactInfoRequest: Request
+
+    uint32                          contact_id
+    o ExtendedContactInfo           extended_info
+
+msg_end
+
+msg SetExtendedContactInfoResponse: BackwardMessage
+
+msg_end
+
+enum ReminderAction_type_e
+
+    NONE = 0,
+    REPEAT = 1
+    DROP_FEEDBACK = 2
+    DROP_SNOOZE = 3
+
+enum_end
+
+obj ReminderAction
+
+    e ReminderAction_type_e          type
+    uint32          msg_templ_id
+
+obj_end
+
+obj ReminderOptions
+
+    e voice_e           voice
+    e lang_tools::lang_e lang
+    uint32              max_tries
+    bool                redial_if_no_feedback
+    o basic_objects::TimeWindow time_window
+    o basic_objects::Weekdays   weekdays
+
+obj_end
+
+obj Reminder
+
+    uint32          msg_templ_id
+    uint32          feedback_templ_id
+    uint32          effective_time         // epoch timestamp in sec
+    uint32          remind_period          // remind period in min
+    map<string,string>     params
+    map<e dtmf_tools::tone_e, o ReminderAction> actions
+
+    o ReminderOptions options
+
+obj_end
+
+msg AddReminderRequest: Request
+
+    uint32          contact_phone_id
+    o Reminder      reminder
+
+msg_end
+
+msg AddReminderResponse: BackwardMessage
+
+    uint32          job_id
+
+msg_end
+
+msg ModifyReminderRequest: Request
+
+    uint32          job_id
+    uint32          contact_phone_id
+    o Reminder      reminder
+
+msg_end
+
+msg ModifyReminderResponse: BackwardMessage
+
+msg_end
+
+msg GetReminderRequest: Request
+
+    uint32                  job_id
+
+msg_end
+
+msg GetReminderResponse: BackwardMessage
+
+    uint32                  contact_id
+    uint32                  contact_phone_id
+    string                  contact_phone
+    o Reminder              reminder
+
+msg_end
+
+msg GetReminderStatusRequest: Request
+
+    uint32                      user_id
+
+    string                      search_filter
+
+    o basic_objects::TimeRange  effective_date_time_range
+
+    uint32                      page_size
+    uint32                      page_number
+
+msg_end
