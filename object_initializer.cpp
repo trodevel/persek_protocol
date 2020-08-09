@@ -1,6 +1,9 @@
 // includes
 #include "object_initializer.h"
 #include "generic_protocol/object_initializer.h"
+#include "basic_objects/object_initializer.h"
+#include "dtmf_tools/object_initializer.h"
+#include "lang_tools/object_initializer.h"
 
 namespace persek_protocol
 {
