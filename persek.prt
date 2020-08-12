@@ -18,7 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-# $Revision: 13419 $ $Date:: 2020-08-02 #$ $Author: serge $
+# $Revision: 13475 $ $Date:: 2020-08-12 #$ $Author: serge $
 
 ############################################################
 
@@ -45,7 +45,7 @@ base_msg_end
 
 ############################################################
 
-base_msg BackwardMessage
+base_msg BackwardMessage: generic_protocol::BackwardMessage
 
 base_msg_end
 
