@@ -249,7 +249,7 @@ struct Request: public generic_protocol::Request
 };
 
 // Base message
-struct BackwardMessage: public basic_parser::Object
+struct BackwardMessage: public generic_protocol::BackwardMessage
 {
 };
 

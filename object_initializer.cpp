@@ -226,7 +226,9 @@ void initialize( Request * res
 void initialize( BackwardMessage * res
  )
 {
-    // no base class
+    // base class
+    ::generic_protocol::initialize( static_cast<generic_protocol::BackwardMessage*>( res ) );
+
 }
 
 // messages

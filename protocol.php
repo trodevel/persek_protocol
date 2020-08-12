@@ -218,10 +218,11 @@ class Request extends \generic_protocol\Request
 };
 
 // Base message
-class BackwardMessage extends \basic_parser\Object
+class BackwardMessage extends \generic_protocol\BackwardMessage
 {
     function __construct()
     {
+        parent::__construct();
     }
 };
 

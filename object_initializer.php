@@ -225,7 +225,9 @@ function initialize__Request( & $res
 function initialize__BackwardMessage( & $res
  )
 {
-    // no base class
+    // base class
+    \generic_protocol\initialize__BackwardMessage( $res );
+
 }
 
 // messages
