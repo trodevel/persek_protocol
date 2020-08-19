@@ -3,8 +3,8 @@
 #include "generic_protocol/dummy_creator.h"
 #include "basic_parser/dummy_creator.h"
 #include "basic_objects/dummy_creator.h"
-#include "dtmf_tools/dummy_creator.h"
-#include "lang_tools/dummy_creator.h"
+#include "dtmf_tools_protocol/dummy_creator.h"
+#include "lang_tools_protocol/dummy_creator.h"
 #include "object_initializer.h"
 
 namespace persek_protocol

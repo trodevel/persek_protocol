@@ -6,8 +6,8 @@ namespace persek_protocol;
 // includes
 require_once __DIR__.'/../generic_protocol/str_helper.php';
 require_once __DIR__.'/../basic_objects/str_helper.php';
-require_once __DIR__.'/../dtmf_tools/str_helper.php';
-require_once __DIR__.'/../lang_tools/str_helper.php';
+require_once __DIR__.'/../dtmf_tools_protocol/str_helper.php';
+require_once __DIR__.'/../lang_tools_protocol/str_helper.php';
 require_once __DIR__.'/../basic_parser/str_helper.php';
 
 // enums

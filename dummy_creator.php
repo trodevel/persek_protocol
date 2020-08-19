@@ -7,8 +7,8 @@ namespace persek_protocol;
 require_once __DIR__.'/../generic_protocol/dummy_creator.php';
 require_once __DIR__.'/../basic_parser/dummy_creator.php';
 require_once __DIR__.'/../basic_objects/dummy_creator.php';
-require_once __DIR__.'/../dtmf_tools/dummy_creator.php';
-require_once __DIR__.'/../lang_tools/dummy_creator.php';
+require_once __DIR__.'/../dtmf_tools_protocol/dummy_creator.php';
+require_once __DIR__.'/../lang_tools_protocol/dummy_creator.php';
 require_once 'object_initializer.php';
 
 // enums

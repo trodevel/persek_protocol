@@ -11,8 +11,8 @@
 
 // includes for used modules
 #include "basic_objects/protocol.h"
-#include "dtmf_tools/protocol.h"
-#include "lang_tools/protocol.h"
+#include "dtmf_tools_protocol/protocol.h"
+#include "lang_tools_protocol/protocol.h"
 
 namespace persek_protocol
 {

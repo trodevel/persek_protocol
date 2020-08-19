@@ -6,8 +6,8 @@ namespace persek_protocol;
 // includes
 require_once __DIR__.'/../generic_protocol/request_encoder.php';
 require_once __DIR__.'/../basic_objects/request_encoder.php';
-require_once __DIR__.'/../dtmf_tools/request_encoder.php';
-require_once __DIR__.'/../lang_tools/request_encoder.php';
+require_once __DIR__.'/../dtmf_tools_protocol/request_encoder.php';
+require_once __DIR__.'/../lang_tools_protocol/request_encoder.php';
 require_once __DIR__.'/../basic_parser/request_encoder.php';
 
 // enums

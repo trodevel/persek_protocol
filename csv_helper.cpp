@@ -6,8 +6,8 @@
 #include "csv_helper.h"
 #include "generic_protocol/csv_helper.h"
 #include "basic_objects/csv_helper.h"
-#include "dtmf_tools/csv_helper.h"
-#include "lang_tools/csv_helper.h"
+#include "dtmf_tools_protocol/csv_helper.h"
+#include "lang_tools_protocol/csv_helper.h"
 #include "basic_parser/csv_helper.h"
 
 namespace persek_protocol
