@@ -17,70 +17,110 @@ namespace dummy
 
 voice_e create__voice_e()
 {
-    auto res = voice_e::UNDEF;
+    static const unsigned SIZE = 3;
+
+    static const voice_e values[SIZE] = { voice_e::UNDEF, voice_e::MALE_A, voice_e::FEMALE_A,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 urgency_e create__urgency_e()
 {
-    auto res = urgency_e::UNDEF;
+    static const unsigned SIZE = 3;
+
+    static const urgency_e values[SIZE] = { urgency_e::UNDEF, urgency_e::IMMEDIATE, urgency_e::TIMED,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 JobInfo_type_e create__JobInfo_type_e()
 {
-    auto res = JobInfo_type_e::UNDEF;
+    static const unsigned SIZE = 5;
+
+    static const JobInfo_type_e values[SIZE] = { JobInfo_type_e::UNDEF, JobInfo_type_e::SAY, JobInfo_type_e::SAY_FEEDBACK, JobInfo_type_e::FSM, JobInfo_type_e::REMINDER,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 exit_status_e create__exit_status_e()
 {
-    auto res = exit_status_e::DONE;
+    static const unsigned SIZE = 5;
+
+    static const exit_status_e values[SIZE] = { exit_status_e::DONE, exit_status_e::CANCELLED, exit_status_e::FAILED, exit_status_e::REFUSED_BY_RECIPIENT, exit_status_e::ABORTED_BY_RECIPIENT,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 OpenJobStatus_state_e create__OpenJobStatus_state_e()
 {
-    auto res = OpenJobStatus_state_e::IDLE;
+    static const unsigned SIZE = 8;
+
+    static const OpenJobStatus_state_e values[SIZE] = { OpenJobStatus_state_e::IDLE, OpenJobStatus_state_e::WAITING_PROC_STARTED, OpenJobStatus_state_e::ACTIVE, OpenJobStatus_state_e::WRONG_ACTIVE, OpenJobStatus_state_e::CANCELLED_IN_A, OpenJobStatus_state_e::CANCELLED_IN_WPS, OpenJobStatus_state_e::COMPLETED, OpenJobStatus_state_e::WAITING_REDIAL_TIMER,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 FindJobRequest_status_e create__FindJobRequest_status_e()
 {
-    auto res = FindJobRequest_status_e::ANY;
+    static const unsigned SIZE = 3;
+
+    static const FindJobRequest_status_e values[SIZE] = { FindJobRequest_status_e::ANY, FindJobRequest_status_e::OPEN, FindJobRequest_status_e::CLOSED,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 action_type_e create__action_type_e()
 {
-    auto res = action_type_e::NONE;
+    static const unsigned SIZE = 3;
+
+    static const action_type_e values[SIZE] = { action_type_e::NONE, action_type_e::REPEAT, action_type_e::DROP,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 ContactPhone_type_e create__ContactPhone_type_e()
 {
-    auto res = ContactPhone_type_e::DFLT;
+    static const unsigned SIZE = 3;
+
+    static const ContactPhone_type_e values[SIZE] = { ContactPhone_type_e::DFLT, ContactPhone_type_e::LANDLINE, ContactPhone_type_e::MOBILE,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 gender_e create__gender_e()
 {
-    auto res = gender_e::UNDEF;
+    static const unsigned SIZE = 3;
+
+    static const gender_e values[SIZE] = { gender_e::UNDEF, gender_e::MALE, gender_e::FEMALE,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }
 
 ReminderAction_type_e create__ReminderAction_type_e()
 {
-    auto res = ReminderAction_type_e::NONE;
+    static const unsigned SIZE = 4;
+
+    static const ReminderAction_type_e values[SIZE] = { ReminderAction_type_e::NONE, ReminderAction_type_e::REPEAT, ReminderAction_type_e::DROP_FEEDBACK, ReminderAction_type_e::DROP_SNOOZE,  };
+
+    auto res = values[ ::basic_parser::dummy::create__uint32() % SIZE ];
 
     return res;
 }

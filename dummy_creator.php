@@ -15,70 +15,110 @@ require_once 'object_initializer.php';
 
 function create_dummy__voice_e()
 {
-    $res = voice_e__UNDEF;
+    $SIZE = 3;
+
+    $values = array( voice_e__UNDEF, voice_e__MALE_A, voice_e__FEMALE_A,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__urgency_e()
 {
-    $res = urgency_e__UNDEF;
+    $SIZE = 3;
+
+    $values = array( urgency_e__UNDEF, urgency_e__IMMEDIATE, urgency_e__TIMED,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__JobInfo_type_e()
 {
-    $res = JobInfo_type_e__UNDEF;
+    $SIZE = 5;
+
+    $values = array( JobInfo_type_e__UNDEF, JobInfo_type_e__SAY, JobInfo_type_e__SAY_FEEDBACK, JobInfo_type_e__FSM, JobInfo_type_e__REMINDER,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__exit_status_e()
 {
-    $res = exit_status_e__DONE;
+    $SIZE = 5;
+
+    $values = array( exit_status_e__DONE, exit_status_e__CANCELLED, exit_status_e__FAILED, exit_status_e__REFUSED_BY_RECIPIENT, exit_status_e__ABORTED_BY_RECIPIENT,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__OpenJobStatus_state_e()
 {
-    $res = OpenJobStatus_state_e__IDLE;
+    $SIZE = 8;
+
+    $values = array( OpenJobStatus_state_e__IDLE, OpenJobStatus_state_e__WAITING_PROC_STARTED, OpenJobStatus_state_e__ACTIVE, OpenJobStatus_state_e__WRONG_ACTIVE, OpenJobStatus_state_e__CANCELLED_IN_A, OpenJobStatus_state_e__CANCELLED_IN_WPS, OpenJobStatus_state_e__COMPLETED, OpenJobStatus_state_e__WAITING_REDIAL_TIMER,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__FindJobRequest_status_e()
 {
-    $res = FindJobRequest_status_e__ANY;
+    $SIZE = 3;
+
+    $values = array( FindJobRequest_status_e__ANY, FindJobRequest_status_e__OPEN, FindJobRequest_status_e__CLOSED,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__action_type_e()
 {
-    $res = action_type_e__NONE;
+    $SIZE = 3;
+
+    $values = array( action_type_e__NONE, action_type_e__REPEAT, action_type_e__DROP,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__ContactPhone_type_e()
 {
-    $res = ContactPhone_type_e__DFLT;
+    $SIZE = 3;
+
+    $values = array( ContactPhone_type_e__DFLT, ContactPhone_type_e__LANDLINE, ContactPhone_type_e__MOBILE,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__gender_e()
 {
-    $res = gender_e__UNDEF;
+    $SIZE = 3;
+
+    $values = array( gender_e__UNDEF, gender_e__MALE, gender_e__FEMALE,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
 
 function create_dummy__ReminderAction_type_e()
 {
-    $res = ReminderAction_type_e__NONE;
+    $SIZE = 4;
+
+    $values = array( ReminderAction_type_e__NONE, ReminderAction_type_e__REPEAT, ReminderAction_type_e__DROP_FEEDBACK, ReminderAction_type_e__DROP_SNOOZE,  );
+
+    $res = $values[ \basic_parser\create_dummy__int32() % $SIZE ];
 
     return $res;
 }
