@@ -243,12 +243,18 @@ bool validate( const std::string & prefix, const Reminder & r )
 
 bool validate( const Request & r )
 {
+    // base class
+    ::generic_protocol::validator::validate( static_cast<const generic_protocol::Request&>( r ) );
+
 
     return true;
 }
 
 bool validate( const BackwardMessage & r )
 {
+    // base class
+    ::generic_protocol::validator::validate( static_cast<const generic_protocol::BackwardMessage&>( r ) );
+
 
     return true;
 }

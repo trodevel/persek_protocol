@@ -253,6 +253,9 @@ function to_generic_request__Reminder( $prefix, & $r )
 function to_generic_request__Request( & $r )
 {
     $res = "";
+    // base class
+    $res .= \generic_protocol\to_generic_request__Request( $r );
+
 
     return $res;
 }
@@ -260,6 +263,9 @@ function to_generic_request__Request( & $r )
 function to_generic_request__BackwardMessage( & $r )
 {
     $res = "";
+    // base class
+    $res .= \generic_protocol\to_generic_request__BackwardMessage( $r );
+
 
     return $res;
 }

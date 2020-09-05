@@ -247,12 +247,18 @@ std::ostream & write( std::ostream & os, const Reminder & r )
 
 std::ostream & write( std::ostream & os, const Request & r )
 {
+    // base class
+    ::generic_protocol::csv_helper::write( os, static_cast<const generic_protocol::Request&>( r ) );
+
 
     return os;
 }
 
 std::ostream & write( std::ostream & os, const BackwardMessage & r )
 {
+    // base class
+    ::generic_protocol::csv_helper::write( os, static_cast<const generic_protocol::BackwardMessage&>( r ) );
+
 
     return os;
 }

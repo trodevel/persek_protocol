@@ -353,9 +353,11 @@ function to_html__Reminder( & $r )
 
 function to_html__Request( & $r )
 {
-    $header = array(  );
+    $header = array( 'generic_protocol::Request' );
 
-    $data = array(        );
+    $data = array(
+        \generic_protocol\to_html__Request( $r )
+        );
 
     $res = \basic_parser\to_html_table( $header, $data );
 
@@ -364,9 +366,11 @@ function to_html__Request( & $r )
 
 function to_html__BackwardMessage( & $r )
 {
-    $header = array(  );
+    $header = array( 'generic_protocol::BackwardMessage' );
 
-    $data = array(        );
+    $data = array(
+        \generic_protocol\to_html__BackwardMessage( $r )
+        );
 
     $res = \basic_parser\to_html_table( $header, $data );
 

@@ -196,7 +196,9 @@ function to_string__ReminderAction_type_e( $r )
 
 function to_string__JobOptions( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " voice=" . to_string__voice_e( $r->voice );
     $res .= " urgency=" . to_string__urgency_e( $r->urgency );
@@ -214,7 +216,9 @@ function to_string__JobOptions( & $r )
 
 function to_string__JobInfo( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
@@ -230,7 +234,9 @@ function to_string__JobInfo( & $r )
 
 function to_string__ClosedJobStatus( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
     $res .= " exit_code=" . to_string__exit_status_e( $r->exit_code );
@@ -246,7 +252,9 @@ function to_string__ClosedJobStatus( & $r )
 
 function to_string__OpenJobStatus( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
     $res .= " state=" . to_string__OpenJobStatus_state_e( $r->state );
@@ -261,7 +269,9 @@ function to_string__OpenJobStatus( & $r )
 
 function to_string__TemplateInfo( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " id=" . \basic_parser\to_string__int( $r->id );
     $res .= " category_id=" . \basic_parser\to_string__int( $r->category_id );
@@ -277,7 +287,9 @@ function to_string__TemplateInfo( & $r )
 
 function to_string__CancellationFailureReason( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
     $res .= " type=" . \generic_protocol\to_string__ErrorResponse_type_e( $r->type );
@@ -290,7 +302,9 @@ function to_string__CancellationFailureReason( & $r )
 
 function to_string__Action( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " type=" . to_string__action_type_e( $r->type );
     $res .= " msg_templ_id=" . \basic_parser\to_string__int( $r->msg_templ_id );
@@ -302,7 +316,9 @@ function to_string__Action( & $r )
 
 function to_string__ContactPhone( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " type=" . to_string__ContactPhone_type_e( $r->type );
     $res .= " phone_number=" . \basic_parser\to_string__string( $r->phone_number );
@@ -314,7 +330,9 @@ function to_string__ContactPhone( & $r )
 
 function to_string__ContactPhoneWithId( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " contact_phone_id=" . \basic_parser\to_string__int( $r->contact_phone_id );
     $res .= " contact_phone=" . to_string__ContactPhone( $r->contact_phone );
@@ -326,7 +344,9 @@ function to_string__ContactPhoneWithId( & $r )
 
 function to_string__Contact( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " gender=" . to_string__gender_e( $r->gender );
     $res .= " name=" . \basic_parser\to_string__string( $r->name );
@@ -341,7 +361,9 @@ function to_string__Contact( & $r )
 
 function to_string__ExtendedContactInfo( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " voice=" . to_string__voice_e( $r->voice );
     $res .= " lang=" . \lang_tools\to_string__lang_e( $r->lang );
@@ -357,7 +379,9 @@ function to_string__ExtendedContactInfo( & $r )
 
 function to_string__ReminderAction( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " type=" . to_string__ReminderAction_type_e( $r->type );
     $res .= " msg_templ_id=" . \basic_parser\to_string__int( $r->msg_templ_id );
@@ -369,7 +393,9 @@ function to_string__ReminderAction( & $r )
 
 function to_string__ReminderOptions( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " voice=" . to_string__voice_e( $r->voice );
     $res .= " lang=" . \lang_tools\to_string__lang_e( $r->lang );
@@ -385,7 +411,9 @@ function to_string__ReminderOptions( & $r )
 
 function to_string__Reminder( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
 
     $res .= " msg_templ_id=" . \basic_parser\to_string__int( $r->msg_templ_id );
     $res .= " feedback_templ_id=" . \basic_parser\to_string__int( $r->feedback_templ_id );
@@ -404,7 +432,12 @@ function to_string__Reminder( & $r )
 
 function to_string__Request( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
+
+    // base class
+    $res .= \generic_protocol\to_string__Request( $r );
 
 
     $res .= ")";
@@ -414,7 +447,12 @@ function to_string__Request( & $r )
 
 function to_string__BackwardMessage( & $r )
 {
-    $res = "";    $res .= "(";
+    $res = "";
+
+    $res .= "(";
+
+    // base class
+    $res .= \generic_protocol\to_string__BackwardMessage( $r );
 
 
     $res .= ")";
@@ -426,7 +464,9 @@ function to_string__BackwardMessage( & $r )
 
 function to_string__GetJobInfoRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
@@ -437,7 +477,9 @@ function to_string__GetJobInfoRequest( & $r )
 
 function to_string__GetJobInfoResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " jobs=" . \basic_parser\to_string__vector( $r->jobs, '\persek_protocol\to_string__JobInfo' ); // Array
@@ -447,7 +489,9 @@ function to_string__GetJobInfoResponse( & $r )
 
 function to_string__GetJobStatRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
@@ -458,7 +502,9 @@ function to_string__GetJobStatRequest( & $r )
 
 function to_string__GetJobStatResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " open_jobs=" . \basic_parser\to_string__vector( $r->open_jobs, '\persek_protocol\to_string__OpenJobStatus' ); // Array
@@ -469,7 +515,9 @@ function to_string__GetJobStatResponse( & $r )
 
 function to_string__FindJobRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
@@ -486,7 +534,9 @@ function to_string__FindJobRequest( & $r )
 
 function to_string__FindJobResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " total_size=" . \basic_parser\to_string__int( $r->total_size );
@@ -497,7 +547,9 @@ function to_string__FindJobResponse( & $r )
 
 function to_string__FindTemplatesRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
@@ -510,7 +562,9 @@ function to_string__FindTemplatesRequest( & $r )
 
 function to_string__FindTemplatesResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " templates=" . \basic_parser\to_string__vector( $r->templates, '\persek_protocol\to_string__TemplateInfo' ); // Array
@@ -520,7 +574,9 @@ function to_string__FindTemplatesResponse( & $r )
 
 function to_string__CancelJobRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
@@ -530,7 +586,9 @@ function to_string__CancelJobRequest( & $r )
 
 function to_string__CancelJobResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
 
@@ -539,7 +597,9 @@ function to_string__CancelJobResponse( & $r )
 
 function to_string__CancelJobsRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " job_ids=" . \basic_parser\to_string__vector( $r->job_ids, '\basic_parser\to_string__int' ); // Array
@@ -549,7 +609,9 @@ function to_string__CancelJobsRequest( & $r )
 
 function to_string__CancelJobsResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " cancelled_job_ids=" . \basic_parser\to_string__vector( $r->cancelled_job_ids, '\basic_parser\to_string__int' ); // Array
@@ -560,7 +622,9 @@ function to_string__CancelJobsResponse( & $r )
 
 function to_string__SayRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
@@ -574,7 +638,9 @@ function to_string__SayRequest( & $r )
 
 function to_string__SayResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
@@ -584,7 +650,9 @@ function to_string__SayResponse( & $r )
 
 function to_string__SayFeedbackRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
@@ -600,7 +668,9 @@ function to_string__SayFeedbackRequest( & $r )
 
 function to_string__SayFeedbackResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
@@ -610,7 +680,9 @@ function to_string__SayFeedbackResponse( & $r )
 
 function to_string__AddContactPhoneRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -621,7 +693,9 @@ function to_string__AddContactPhoneRequest( & $r )
 
 function to_string__AddContactPhoneResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " contact_phone_id=" . \basic_parser\to_string__int( $r->contact_phone_id );
@@ -631,7 +705,9 @@ function to_string__AddContactPhoneResponse( & $r )
 
 function to_string__ModifyContactPhoneRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_phone_id=" . \basic_parser\to_string__int( $r->contact_phone_id );
@@ -642,7 +718,9 @@ function to_string__ModifyContactPhoneRequest( & $r )
 
 function to_string__ModifyContactPhoneResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
 
@@ -651,7 +729,9 @@ function to_string__ModifyContactPhoneResponse( & $r )
 
 function to_string__DeleteContactPhoneRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_phone_id=" . \basic_parser\to_string__int( $r->contact_phone_id );
@@ -661,7 +741,9 @@ function to_string__DeleteContactPhoneRequest( & $r )
 
 function to_string__DeleteContactPhoneResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
 
@@ -670,7 +752,9 @@ function to_string__DeleteContactPhoneResponse( & $r )
 
 function to_string__GetContactPhoneRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_phone_id=" . \basic_parser\to_string__int( $r->contact_phone_id );
@@ -680,7 +764,9 @@ function to_string__GetContactPhoneRequest( & $r )
 
 function to_string__GetContactPhoneResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -691,7 +777,9 @@ function to_string__GetContactPhoneResponse( & $r )
 
 function to_string__AddContactRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
@@ -702,7 +790,9 @@ function to_string__AddContactRequest( & $r )
 
 function to_string__AddContactResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -712,7 +802,9 @@ function to_string__AddContactResponse( & $r )
 
 function to_string__ModifyContactRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -723,7 +815,9 @@ function to_string__ModifyContactRequest( & $r )
 
 function to_string__ModifyContactResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
 
@@ -732,7 +826,9 @@ function to_string__ModifyContactResponse( & $r )
 
 function to_string__DeleteContactRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -742,7 +838,9 @@ function to_string__DeleteContactRequest( & $r )
 
 function to_string__DeleteContactResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
 
@@ -751,7 +849,9 @@ function to_string__DeleteContactResponse( & $r )
 
 function to_string__GetContactRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -761,7 +861,9 @@ function to_string__GetContactRequest( & $r )
 
 function to_string__GetContactResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " contact=" . to_string__Contact( $r->contact );
@@ -772,7 +874,9 @@ function to_string__GetContactResponse( & $r )
 
 function to_string__GetContactWithPhonesRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -782,7 +886,9 @@ function to_string__GetContactWithPhonesRequest( & $r )
 
 function to_string__GetContactWithPhonesResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " contact=" . to_string__Contact( $r->contact );
@@ -793,7 +899,9 @@ function to_string__GetContactWithPhonesResponse( & $r )
 
 function to_string__GetContactExtRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -803,7 +911,9 @@ function to_string__GetContactExtRequest( & $r )
 
 function to_string__GetContactExtResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " contact=" . to_string__Contact( $r->contact );
@@ -815,7 +925,9 @@ function to_string__GetContactExtResponse( & $r )
 
 function to_string__GetExtendedContactInfoRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -825,7 +937,9 @@ function to_string__GetExtendedContactInfoRequest( & $r )
 
 function to_string__GetExtendedContactInfoResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " extended_info=" . to_string__ExtendedContactInfo( $r->extended_info );
@@ -835,7 +949,9 @@ function to_string__GetExtendedContactInfoResponse( & $r )
 
 function to_string__SetExtendedContactInfoRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -846,7 +962,9 @@ function to_string__SetExtendedContactInfoRequest( & $r )
 
 function to_string__SetExtendedContactInfoResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
 
@@ -855,7 +973,9 @@ function to_string__SetExtendedContactInfoResponse( & $r )
 
 function to_string__AddReminderRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " contact_phone_id=" . \basic_parser\to_string__int( $r->contact_phone_id );
@@ -866,7 +986,9 @@ function to_string__AddReminderRequest( & $r )
 
 function to_string__AddReminderResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
@@ -876,7 +998,9 @@ function to_string__AddReminderResponse( & $r )
 
 function to_string__ModifyReminderRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
@@ -888,7 +1012,9 @@ function to_string__ModifyReminderRequest( & $r )
 
 function to_string__ModifyReminderResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
 
@@ -897,7 +1023,9 @@ function to_string__ModifyReminderResponse( & $r )
 
 function to_string__GetReminderRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " job_id=" . \basic_parser\to_string__int( $r->job_id );
@@ -907,7 +1035,9 @@ function to_string__GetReminderRequest( & $r )
 
 function to_string__GetReminderResponse( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__BackwardMessage( $r );
 
     $res .= " contact_id=" . \basic_parser\to_string__int( $r->contact_id );
@@ -920,7 +1050,9 @@ function to_string__GetReminderResponse( & $r )
 
 function to_string__GetReminderStatusRequest( & $r )
 {
-    $res = "";    // base class
+    $res = "";
+
+    // base class
     $res .= to_string__Request( $r );
 
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
