@@ -240,7 +240,7 @@ std::ostream & write( std::ostream & os, const JobOptions & r )
 
     os << " voice="; write( os, r.voice );
     os << " urgency="; write( os, r.urgency );
-    os << " lang="; ::lang_tools::str_helper::write( os, r.lang );
+    os << " lang="; ::lang_tools_protocol::str_helper::write( os, r.lang );
     os << " exec_time="; write( os, r.exec_time );
     os << " max_tries="; write( os, r.max_tries );
     os << " redial_if_no_feedback="; write( os, r.redial_if_no_feedback );
@@ -306,7 +306,7 @@ std::ostream & write( std::ostream & os, const TemplateInfo & r )
     os << " id="; write( os, r.id );
     os << " category_id="; write( os, r.category_id );
     os << " name="; write( os, r.name );
-    os << " lang="; ::lang_tools::str_helper::write( os, r.lang );
+    os << " lang="; ::lang_tools_protocol::str_helper::write( os, r.lang );
     os << " localized_name="; write( os, r.localized_name );
     os << " placeholders="; write_t( os, r.placeholders, static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ) ); // Array
 
@@ -384,7 +384,7 @@ std::ostream & write( std::ostream & os, const ExtendedContactInfo & r )
     os << "(";
 
     os << " voice="; write( os, r.voice );
-    os << " lang="; ::lang_tools::str_helper::write( os, r.lang );
+    os << " lang="; ::lang_tools_protocol::str_helper::write( os, r.lang );
     os << " max_tries="; write( os, r.max_tries );
     os << " redial_if_no_feedback="; write( os, r.redial_if_no_feedback );
     os << " time_window="; ::basic_objects::str_helper::write( os, r.time_window );
@@ -412,7 +412,7 @@ std::ostream & write( std::ostream & os, const ReminderOptions & r )
     os << "(";
 
     os << " voice="; write( os, r.voice );
-    os << " lang="; ::lang_tools::str_helper::write( os, r.lang );
+    os << " lang="; ::lang_tools_protocol::str_helper::write( os, r.lang );
     os << " max_tries="; write( os, r.max_tries );
     os << " redial_if_no_feedback="; write( os, r.redial_if_no_feedback );
     os << " time_window="; ::basic_objects::str_helper::write( os, r.time_window );
@@ -432,7 +432,7 @@ std::ostream & write( std::ostream & os, const Reminder & r )
     os << " effective_time="; write( os, r.effective_time );
     os << " remind_period="; write( os, r.remind_period );
     os << " params="; write_t( os, r.params, static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ), static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ) ); // Map
-    os << " actions="; write_t( os, r.actions, static_cast<std::ostream & (*)( std::ostream &, dtmf_tools::tone_e )>( &::dtmf_tools::str_helper::write ), static_cast<std::ostream & (*)( std::ostream &, const ReminderAction &  )>( &write ) ); // Map
+    os << " actions="; write_t( os, r.actions, static_cast<std::ostream & (*)( std::ostream &, dtmf_tools_protocol::tone_e )>( &::dtmf_tools_protocol::str_helper::write ), static_cast<std::ostream & (*)( std::ostream &, const ReminderAction &  )>( &write ) ); // Map
     os << " options="; write( os, r.options );
 
     os << ")";
@@ -549,7 +549,7 @@ std::ostream & write( std::ostream & os, const FindTemplatesRequest & r )
     os << " user_id="; write( os, r.user_id );
     os << " category_id="; write( os, r.category_id );
     os << " name_regex="; write( os, r.name_regex );
-    os << " lang="; ::lang_tools::str_helper::write( os, r.lang );
+    os << " lang="; ::lang_tools_protocol::str_helper::write( os, r.lang );
 
     return os;
 }
@@ -638,7 +638,7 @@ std::ostream & write( std::ostream & os, const SayFeedbackRequest & r )
     os << " msg_templ_id="; write( os, r.msg_templ_id );
     os << " feedback_templ_id="; write( os, r.feedback_templ_id );
     os << " params="; write_t( os, r.params, static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ), static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ) ); // Map
-    os << " actions="; write_t( os, r.actions, static_cast<std::ostream & (*)( std::ostream &, dtmf_tools::tone_e )>( &::dtmf_tools::str_helper::write ), static_cast<std::ostream & (*)( std::ostream &, const Action &  )>( &write ) ); // Map
+    os << " actions="; write_t( os, r.actions, static_cast<std::ostream & (*)( std::ostream &, dtmf_tools_protocol::tone_e )>( &::dtmf_tools_protocol::str_helper::write ), static_cast<std::ostream & (*)( std::ostream &, const Action &  )>( &write ) ); // Map
     os << " options="; write( os, r.options );
 
     return os;

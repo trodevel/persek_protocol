@@ -3,16 +3,17 @@
 namespace persek_protocol;
 
 
-// includes
-require_once 'protocol.php';
+// base include
 require_once __DIR__.'/../generic_protocol/object_initializer.php';
+// own includes
+require_once __DIR__.'/../persek_protocol/protocol.php';
 
 // objects
 
 function initialize__JobOptions( & $res
     , $voice // voice_e
     , $urgency // urgency_e
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
     , $exec_time // uint32_t
     , $max_tries // uint32_t
     , $redial_if_no_feedback // bool
@@ -83,7 +84,7 @@ function initialize__TemplateInfo( & $res
     , $id // uint32_t
     , $category_id // uint32_t
     , $name // string
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
     , $localized_name // string
     , $placeholders // array<string>
  )
@@ -151,7 +152,7 @@ function initialize__Contact( & $res
 
 function initialize__ExtendedContactInfo( & $res
     , $voice // voice_e
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
     , $max_tries // uint32_t
     , $redial_if_no_feedback // bool
     , $time_window // basic_objects\TimeWindow
@@ -177,7 +178,7 @@ function initialize__ReminderAction( & $res
 
 function initialize__ReminderOptions( & $res
     , $voice // voice_e
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
     , $max_tries // uint32_t
     , $redial_if_no_feedback // bool
     , $time_window // basic_objects\TimeWindow
@@ -198,7 +199,7 @@ function initialize__Reminder( & $res
     , $effective_time // uint32_t
     , $remind_period // uint32_t
     , $params // map<string, string>
-    , $actions // map<dtmf_tools\tone_e, ReminderAction>
+    , $actions // map<dtmf_tools_protocol\tone_e, ReminderAction>
     , $options // ReminderOptions
  )
 {
@@ -322,7 +323,7 @@ function initialize__FindTemplatesRequest( & $res
     , $user_id // uint32_t
     , $category_id // uint32_t
     , $name_regex // string
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
  )
 {
     // base class
@@ -422,7 +423,7 @@ function initialize__SayFeedbackRequest( & $res
     , $msg_templ_id // uint32_t
     , $feedback_templ_id // uint32_t
     , $params // map<string, string>
-    , $actions // map<dtmf_tools\tone_e, Action>
+    , $actions // map<dtmf_tools_protocol\tone_e, Action>
     , $options // JobOptions
  )
 {
@@ -807,7 +808,7 @@ function initialize__GetReminderStatusRequest( & $res
 function create__JobOptions(
     $voice // voice_e
     , $urgency // urgency_e
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
     , $exec_time // uint32_t
     , $max_tries // uint32_t
     , $redial_if_no_feedback // bool
@@ -873,7 +874,7 @@ function create__TemplateInfo(
     $id // uint32_t
     , $category_id // uint32_t
     , $name // string
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
     , $localized_name // string
     , $placeholders // array<string>
  )
@@ -951,7 +952,7 @@ function create__Contact(
 
 function create__ExtendedContactInfo(
     $voice // voice_e
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
     , $max_tries // uint32_t
     , $redial_if_no_feedback // bool
     , $time_window // basic_objects\TimeWindow
@@ -979,7 +980,7 @@ function create__ReminderAction(
 
 function create__ReminderOptions(
     $voice // voice_e
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
     , $max_tries // uint32_t
     , $redial_if_no_feedback // bool
     , $time_window // basic_objects\TimeWindow
@@ -999,7 +1000,7 @@ function create__Reminder(
     , $effective_time // uint32_t
     , $remind_period // uint32_t
     , $params // map<string, string>
-    , $actions // map<dtmf_tools\tone_e, ReminderAction>
+    , $actions // map<dtmf_tools_protocol\tone_e, ReminderAction>
     , $options // ReminderOptions
  )
 {
@@ -1097,7 +1098,7 @@ function create__FindTemplatesRequest(
     , $user_id // uint32_t
     , $category_id // uint32_t
     , $name_regex // string
-    , $lang // lang_tools\lang_e
+    , $lang // lang_tools_protocol\lang_e
  )
 {
     $res = new FindTemplatesRequest;
@@ -1198,7 +1199,7 @@ function create__SayFeedbackRequest(
     , $msg_templ_id // uint32_t
     , $feedback_templ_id // uint32_t
     , $params // map<string, string>
-    , $actions // map<dtmf_tools\tone_e, Action>
+    , $actions // map<dtmf_tools_protocol\tone_e, Action>
     , $options // JobOptions
  )
 {
@@ -1591,7 +1592,7 @@ function create__GetReminderStatusRequest(
     return $res;
 }
 
-# namespace_end persek_protocol
+// namespace_end persek_protocol
 
 
 ?>

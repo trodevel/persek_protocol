@@ -120,7 +120,7 @@ void get_value_or_throw( JobOptions * res, const std::string & prefix, const gen
 {
     get_value_or_throw( & res->voice, prefix + ".VOICE", r );
     get_value_or_throw( & res->urgency, prefix + ".URGENCY", r );
-    ::lang_tools::parser::get_value_or_throw( & res->lang, prefix + ".LANG", r );
+    ::lang_tools_protocol::parser::get_value_or_throw( & res->lang, prefix + ".LANG", r );
     get_value_or_throw( & res->exec_time, prefix + ".EXEC_TIME", r );
     get_value_or_throw( & res->max_tries, prefix + ".MAX_TRIES", r );
     get_value_or_throw( & res->redial_if_no_feedback, prefix + ".REDIAL_IF_NO_FEEDBACK", r );
@@ -162,7 +162,7 @@ void get_value_or_throw( TemplateInfo * res, const std::string & prefix, const g
     get_value_or_throw( & res->id, prefix + ".ID", r );
     get_value_or_throw( & res->category_id, prefix + ".CATEGORY_ID", r );
     get_value_or_throw( & res->name, prefix + ".NAME", r );
-    ::lang_tools::parser::get_value_or_throw( & res->lang, prefix + ".LANG", r );
+    ::lang_tools_protocol::parser::get_value_or_throw( & res->lang, prefix + ".LANG", r );
     get_value_or_throw( & res->localized_name, prefix + ".LOCALIZED_NAME", r );
     get_value_or_throw_t( & res->placeholders, prefix + ".PLACEHOLDERS", r, static_cast<void (*)( std::string * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ) ); // Array
 }
@@ -204,7 +204,7 @@ void get_value_or_throw( Contact * res, const std::string & prefix, const generi
 void get_value_or_throw( ExtendedContactInfo * res, const std::string & prefix, const generic_request::Request & r )
 {
     get_value_or_throw( & res->voice, prefix + ".VOICE", r );
-    ::lang_tools::parser::get_value_or_throw( & res->lang, prefix + ".LANG", r );
+    ::lang_tools_protocol::parser::get_value_or_throw( & res->lang, prefix + ".LANG", r );
     get_value_or_throw( & res->max_tries, prefix + ".MAX_TRIES", r );
     get_value_or_throw( & res->redial_if_no_feedback, prefix + ".REDIAL_IF_NO_FEEDBACK", r );
     ::basic_objects::parser::get_value_or_throw( & res->time_window, prefix + ".TIME_WINDOW", r );
@@ -220,7 +220,7 @@ void get_value_or_throw( ReminderAction * res, const std::string & prefix, const
 void get_value_or_throw( ReminderOptions * res, const std::string & prefix, const generic_request::Request & r )
 {
     get_value_or_throw( & res->voice, prefix + ".VOICE", r );
-    ::lang_tools::parser::get_value_or_throw( & res->lang, prefix + ".LANG", r );
+    ::lang_tools_protocol::parser::get_value_or_throw( & res->lang, prefix + ".LANG", r );
     get_value_or_throw( & res->max_tries, prefix + ".MAX_TRIES", r );
     get_value_or_throw( & res->redial_if_no_feedback, prefix + ".REDIAL_IF_NO_FEEDBACK", r );
     ::basic_objects::parser::get_value_or_throw( & res->time_window, prefix + ".TIME_WINDOW", r );
@@ -234,7 +234,7 @@ void get_value_or_throw( Reminder * res, const std::string & prefix, const gener
     get_value_or_throw( & res->effective_time, prefix + ".EFFECTIVE_TIME", r );
     get_value_or_throw( & res->remind_period, prefix + ".REMIND_PERIOD", r );
     get_value_or_throw_t( & res->params, prefix + ".PARAMS", r, static_cast<void (*)( std::string * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ), static_cast<void (*)( std::string * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ) ); // Map
-    get_value_or_throw_t( & res->actions, prefix + ".ACTIONS", r, static_cast<void (*)( dtmf_tools::tone_e * , const std::string & , const generic_request::Request & )>( &::dtmf_tools::parser::get_value_or_throw ), static_cast<void (*)( ReminderAction * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ) ); // Map
+    get_value_or_throw_t( & res->actions, prefix + ".ACTIONS", r, static_cast<void (*)( dtmf_tools_protocol::tone_e * , const std::string & , const generic_request::Request & )>( &::dtmf_tools_protocol::parser::get_value_or_throw ), static_cast<void (*)( ReminderAction * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ) ); // Map
     get_value_or_throw( & res->options, prefix + ".OPTIONS", r );
 }
 
@@ -323,7 +323,7 @@ void get_value_or_throw( FindTemplatesRequest * res, const generic_request::Requ
     get_value_or_throw( & res->user_id, "USER_ID", r );
     get_value_or_throw( & res->category_id, "CATEGORY_ID", r );
     get_value_or_throw( & res->name_regex, "NAME_REGEX", r );
-    ::lang_tools::parser::get_value_or_throw( & res->lang, "LANG", r );
+    ::lang_tools_protocol::parser::get_value_or_throw( & res->lang, "LANG", r );
 }
 
 void get_value_or_throw( FindTemplatesResponse * res, const generic_request::Request & r )
@@ -396,7 +396,7 @@ void get_value_or_throw( SayFeedbackRequest * res, const generic_request::Reques
     get_value_or_throw( & res->msg_templ_id, "MSG_TEMPL_ID", r );
     get_value_or_throw( & res->feedback_templ_id, "FEEDBACK_TEMPL_ID", r );
     get_value_or_throw_t( & res->params, "PARAMS", r, static_cast<void (*)( std::string * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ), static_cast<void (*)( std::string * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ) ); // Map
-    get_value_or_throw_t( & res->actions, "ACTIONS", r, static_cast<void (*)( dtmf_tools::tone_e * , const std::string & , const generic_request::Request & )>( &::dtmf_tools::parser::get_value_or_throw ), static_cast<void (*)( Action * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ) ); // Map
+    get_value_or_throw_t( & res->actions, "ACTIONS", r, static_cast<void (*)( dtmf_tools_protocol::tone_e * , const std::string & , const generic_request::Request & )>( &::dtmf_tools_protocol::parser::get_value_or_throw ), static_cast<void (*)( Action * , const std::string & , const generic_request::Request & )>( &get_value_or_throw ) ); // Map
     get_value_or_throw( & res->options, "OPTIONS", r );
 }
 

@@ -3,8 +3,9 @@
 namespace persek_protocol;
 
 
-// includes
+// base include
 require_once __DIR__.'/../generic_protocol/parser.php';
+// includes
 require_once __DIR__.'/../basic_objects/parser.php';
 require_once __DIR__.'/../dtmf_tools_protocol/parser.php';
 require_once __DIR__.'/../lang_tools_protocol/parser.php';
@@ -90,7 +91,7 @@ function parse__JobOptions( & $csv_arr, & $offset )
 
     $res->voice = parse__voice_e( $csv_arr, $offset );
     $res->urgency = parse__urgency_e( $csv_arr, $offset );
-    $res->lang = \lang_tools\parse__lang_e( $csv_arr, $offset );
+    $res->lang = \lang_tools_protocol\parse__lang_e( $csv_arr, $offset );
     $res->exec_time = \basic_parser\parse__int( $csv_arr, $offset );
     $res->max_tries = \basic_parser\parse__int( $csv_arr, $offset );
     $res->redial_if_no_feedback = \basic_parser\parse__bool( $csv_arr, $offset );
@@ -148,7 +149,7 @@ function parse__TemplateInfo( & $csv_arr, & $offset )
     $res->id = \basic_parser\parse__int( $csv_arr, $offset );
     $res->category_id = \basic_parser\parse__int( $csv_arr, $offset );
     $res->name = \basic_parser\parse__string( $csv_arr, $offset );
-    $res->lang = \lang_tools\parse__lang_e( $csv_arr, $offset );
+    $res->lang = \lang_tools_protocol\parse__lang_e( $csv_arr, $offset );
     $res->localized_name = \basic_parser\parse__string( $csv_arr, $offset );
     $res->placeholders = \basic_parser\parse__vector( $csv_arr, $offset, '\basic_parser\parse__string' ); // Array
 
@@ -214,7 +215,7 @@ function parse__ExtendedContactInfo( & $csv_arr, & $offset )
     $res = new ExtendedContactInfo;
 
     $res->voice = parse__voice_e( $csv_arr, $offset );
-    $res->lang = \lang_tools\parse__lang_e( $csv_arr, $offset );
+    $res->lang = \lang_tools_protocol\parse__lang_e( $csv_arr, $offset );
     $res->max_tries = \basic_parser\parse__int( $csv_arr, $offset );
     $res->redial_if_no_feedback = \basic_parser\parse__bool( $csv_arr, $offset );
     $res->time_window = \basic_objects\parse__TimeWindow( $csv_arr, $offset );
@@ -238,7 +239,7 @@ function parse__ReminderOptions( & $csv_arr, & $offset )
     $res = new ReminderOptions;
 
     $res->voice = parse__voice_e( $csv_arr, $offset );
-    $res->lang = \lang_tools\parse__lang_e( $csv_arr, $offset );
+    $res->lang = \lang_tools_protocol\parse__lang_e( $csv_arr, $offset );
     $res->max_tries = \basic_parser\parse__int( $csv_arr, $offset );
     $res->redial_if_no_feedback = \basic_parser\parse__bool( $csv_arr, $offset );
     $res->time_window = \basic_objects\parse__TimeWindow( $csv_arr, $offset );
@@ -256,7 +257,7 @@ function parse__Reminder( & $csv_arr, & $offset )
     $res->effective_time = \basic_parser\parse__int( $csv_arr, $offset );
     $res->remind_period = \basic_parser\parse__int( $csv_arr, $offset );
     $res->params = \basic_parser\parse__map( $csv_arr, $offset, '\basic_parser\parse__string', '\basic_parser\parse__string' ); // Map
-    $res->actions = \basic_parser\parse__map( $csv_arr, $offset, '\dtmf_tools\parse__tone_e', '\persek_protocol\parse__ReminderAction' ); // Map
+    $res->actions = \basic_parser\parse__map( $csv_arr, $offset, '\dtmf_tools_protocol\parse__tone_e', '\persek_protocol\parse__ReminderAction' ); // Map
     $res->options = parse__ReminderOptions( $csv_arr, $offset );
 
     return $res;
@@ -389,7 +390,7 @@ function parse__FindTemplatesRequest( & $csv_arr )
     $res->user_id = \basic_parser\parse__int( $csv_arr, $offset );
     $res->category_id = \basic_parser\parse__int( $csv_arr, $offset );
     $res->name_regex = \basic_parser\parse__string( $csv_arr, $offset );
-    $res->lang = \lang_tools\parse__lang_e( $csv_arr, $offset );
+    $res->lang = \lang_tools_protocol\parse__lang_e( $csv_arr, $offset );
 
     return $res;
 }
@@ -510,7 +511,7 @@ function parse__SayFeedbackRequest( & $csv_arr )
     $res->msg_templ_id = \basic_parser\parse__int( $csv_arr, $offset );
     $res->feedback_templ_id = \basic_parser\parse__int( $csv_arr, $offset );
     $res->params = \basic_parser\parse__map( $csv_arr, $offset, '\basic_parser\parse__string', '\basic_parser\parse__string' ); // Map
-    $res->actions = \basic_parser\parse__map( $csv_arr, $offset, '\dtmf_tools\parse__tone_e', '\persek_protocol\parse__Action' ); // Map
+    $res->actions = \basic_parser\parse__map( $csv_arr, $offset, '\dtmf_tools_protocol\parse__tone_e', '\persek_protocol\parse__Action' ); // Map
     $res->options = parse__JobOptions( $csv_arr, $offset );
 
     return $res;
@@ -990,53 +991,53 @@ protected static function parse_csv_array( $csv_arr )
 
     $handler_map = array(
         // messages
-        'persek/GetJobInfoRequest'         => 'parse__GetJobInfoRequest',
-        'persek/GetJobInfoResponse'         => 'parse__GetJobInfoResponse',
-        'persek/GetJobStatRequest'         => 'parse__GetJobStatRequest',
-        'persek/GetJobStatResponse'         => 'parse__GetJobStatResponse',
-        'persek/FindJobRequest'         => 'parse__FindJobRequest',
-        'persek/FindJobResponse'         => 'parse__FindJobResponse',
-        'persek/FindTemplatesRequest'         => 'parse__FindTemplatesRequest',
-        'persek/FindTemplatesResponse'         => 'parse__FindTemplatesResponse',
-        'persek/CancelJobRequest'         => 'parse__CancelJobRequest',
-        'persek/CancelJobResponse'         => 'parse__CancelJobResponse',
-        'persek/CancelJobsRequest'         => 'parse__CancelJobsRequest',
-        'persek/CancelJobsResponse'         => 'parse__CancelJobsResponse',
-        'persek/SayRequest'         => 'parse__SayRequest',
-        'persek/SayResponse'         => 'parse__SayResponse',
-        'persek/SayFeedbackRequest'         => 'parse__SayFeedbackRequest',
-        'persek/SayFeedbackResponse'         => 'parse__SayFeedbackResponse',
-        'persek/AddContactPhoneRequest'         => 'parse__AddContactPhoneRequest',
-        'persek/AddContactPhoneResponse'         => 'parse__AddContactPhoneResponse',
-        'persek/ModifyContactPhoneRequest'         => 'parse__ModifyContactPhoneRequest',
-        'persek/ModifyContactPhoneResponse'         => 'parse__ModifyContactPhoneResponse',
-        'persek/DeleteContactPhoneRequest'         => 'parse__DeleteContactPhoneRequest',
-        'persek/DeleteContactPhoneResponse'         => 'parse__DeleteContactPhoneResponse',
-        'persek/GetContactPhoneRequest'         => 'parse__GetContactPhoneRequest',
-        'persek/GetContactPhoneResponse'         => 'parse__GetContactPhoneResponse',
-        'persek/AddContactRequest'         => 'parse__AddContactRequest',
-        'persek/AddContactResponse'         => 'parse__AddContactResponse',
-        'persek/ModifyContactRequest'         => 'parse__ModifyContactRequest',
-        'persek/ModifyContactResponse'         => 'parse__ModifyContactResponse',
-        'persek/DeleteContactRequest'         => 'parse__DeleteContactRequest',
-        'persek/DeleteContactResponse'         => 'parse__DeleteContactResponse',
-        'persek/GetContactRequest'         => 'parse__GetContactRequest',
-        'persek/GetContactResponse'         => 'parse__GetContactResponse',
-        'persek/GetContactWithPhonesRequest'         => 'parse__GetContactWithPhonesRequest',
-        'persek/GetContactWithPhonesResponse'         => 'parse__GetContactWithPhonesResponse',
-        'persek/GetContactExtRequest'         => 'parse__GetContactExtRequest',
-        'persek/GetContactExtResponse'         => 'parse__GetContactExtResponse',
-        'persek/GetExtendedContactInfoRequest'         => 'parse__GetExtendedContactInfoRequest',
-        'persek/GetExtendedContactInfoResponse'         => 'parse__GetExtendedContactInfoResponse',
-        'persek/SetExtendedContactInfoRequest'         => 'parse__SetExtendedContactInfoRequest',
-        'persek/SetExtendedContactInfoResponse'         => 'parse__SetExtendedContactInfoResponse',
-        'persek/AddReminderRequest'         => 'parse__AddReminderRequest',
-        'persek/AddReminderResponse'         => 'parse__AddReminderResponse',
-        'persek/ModifyReminderRequest'         => 'parse__ModifyReminderRequest',
-        'persek/ModifyReminderResponse'         => 'parse__ModifyReminderResponse',
-        'persek/GetReminderRequest'         => 'parse__GetReminderRequest',
-        'persek/GetReminderResponse'         => 'parse__GetReminderResponse',
-        'persek/GetReminderStatusRequest'         => 'parse__GetReminderStatusRequest',
+        'persek_protocol/GetJobInfoRequest'         => 'parse__GetJobInfoRequest',
+        'persek_protocol/GetJobInfoResponse'         => 'parse__GetJobInfoResponse',
+        'persek_protocol/GetJobStatRequest'         => 'parse__GetJobStatRequest',
+        'persek_protocol/GetJobStatResponse'         => 'parse__GetJobStatResponse',
+        'persek_protocol/FindJobRequest'         => 'parse__FindJobRequest',
+        'persek_protocol/FindJobResponse'         => 'parse__FindJobResponse',
+        'persek_protocol/FindTemplatesRequest'         => 'parse__FindTemplatesRequest',
+        'persek_protocol/FindTemplatesResponse'         => 'parse__FindTemplatesResponse',
+        'persek_protocol/CancelJobRequest'         => 'parse__CancelJobRequest',
+        'persek_protocol/CancelJobResponse'         => 'parse__CancelJobResponse',
+        'persek_protocol/CancelJobsRequest'         => 'parse__CancelJobsRequest',
+        'persek_protocol/CancelJobsResponse'         => 'parse__CancelJobsResponse',
+        'persek_protocol/SayRequest'         => 'parse__SayRequest',
+        'persek_protocol/SayResponse'         => 'parse__SayResponse',
+        'persek_protocol/SayFeedbackRequest'         => 'parse__SayFeedbackRequest',
+        'persek_protocol/SayFeedbackResponse'         => 'parse__SayFeedbackResponse',
+        'persek_protocol/AddContactPhoneRequest'         => 'parse__AddContactPhoneRequest',
+        'persek_protocol/AddContactPhoneResponse'         => 'parse__AddContactPhoneResponse',
+        'persek_protocol/ModifyContactPhoneRequest'         => 'parse__ModifyContactPhoneRequest',
+        'persek_protocol/ModifyContactPhoneResponse'         => 'parse__ModifyContactPhoneResponse',
+        'persek_protocol/DeleteContactPhoneRequest'         => 'parse__DeleteContactPhoneRequest',
+        'persek_protocol/DeleteContactPhoneResponse'         => 'parse__DeleteContactPhoneResponse',
+        'persek_protocol/GetContactPhoneRequest'         => 'parse__GetContactPhoneRequest',
+        'persek_protocol/GetContactPhoneResponse'         => 'parse__GetContactPhoneResponse',
+        'persek_protocol/AddContactRequest'         => 'parse__AddContactRequest',
+        'persek_protocol/AddContactResponse'         => 'parse__AddContactResponse',
+        'persek_protocol/ModifyContactRequest'         => 'parse__ModifyContactRequest',
+        'persek_protocol/ModifyContactResponse'         => 'parse__ModifyContactResponse',
+        'persek_protocol/DeleteContactRequest'         => 'parse__DeleteContactRequest',
+        'persek_protocol/DeleteContactResponse'         => 'parse__DeleteContactResponse',
+        'persek_protocol/GetContactRequest'         => 'parse__GetContactRequest',
+        'persek_protocol/GetContactResponse'         => 'parse__GetContactResponse',
+        'persek_protocol/GetContactWithPhonesRequest'         => 'parse__GetContactWithPhonesRequest',
+        'persek_protocol/GetContactWithPhonesResponse'         => 'parse__GetContactWithPhonesResponse',
+        'persek_protocol/GetContactExtRequest'         => 'parse__GetContactExtRequest',
+        'persek_protocol/GetContactExtResponse'         => 'parse__GetContactExtResponse',
+        'persek_protocol/GetExtendedContactInfoRequest'         => 'parse__GetExtendedContactInfoRequest',
+        'persek_protocol/GetExtendedContactInfoResponse'         => 'parse__GetExtendedContactInfoResponse',
+        'persek_protocol/SetExtendedContactInfoRequest'         => 'parse__SetExtendedContactInfoRequest',
+        'persek_protocol/SetExtendedContactInfoResponse'         => 'parse__SetExtendedContactInfoResponse',
+        'persek_protocol/AddReminderRequest'         => 'parse__AddReminderRequest',
+        'persek_protocol/AddReminderResponse'         => 'parse__AddReminderResponse',
+        'persek_protocol/ModifyReminderRequest'         => 'parse__ModifyReminderRequest',
+        'persek_protocol/ModifyReminderResponse'         => 'parse__ModifyReminderResponse',
+        'persek_protocol/GetReminderRequest'         => 'parse__GetReminderRequest',
+        'persek_protocol/GetReminderResponse'         => 'parse__GetReminderResponse',
+        'persek_protocol/GetReminderStatusRequest'         => 'parse__GetReminderStatusRequest',
     );
 
     $type = $csv_arr[0][0];
@@ -1052,7 +1053,7 @@ protected static function parse_csv_array( $csv_arr )
 
 }
 
-# namespace_end persek_protocol
+// namespace_end persek_protocol
 
 
 ?>

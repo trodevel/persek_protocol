@@ -134,7 +134,7 @@ JobOptions create__JobOptions()
     ::persek_protocol::initialize( & res
         , dummy::create__voice_e()
         , dummy::create__urgency_e()
-        , ::lang_tools::dummy::create__lang_e()
+        , ::lang_tools_protocol::dummy::create__lang_e()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__bool()
@@ -200,7 +200,7 @@ TemplateInfo create__TemplateInfo()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__string()
-        , ::lang_tools::dummy::create__lang_e()
+        , ::lang_tools_protocol::dummy::create__lang_e()
         , ::basic_parser::dummy::create__string()
         , ::basic_parser::dummy::create__vector_t<std::string, std::string(*)()>( & ::basic_parser::dummy::create__string ) // Array
         );
@@ -278,7 +278,7 @@ ExtendedContactInfo create__ExtendedContactInfo()
 
     ::persek_protocol::initialize( & res
         , dummy::create__voice_e()
-        , ::lang_tools::dummy::create__lang_e()
+        , ::lang_tools_protocol::dummy::create__lang_e()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__bool()
         , ::basic_objects::dummy::create__TimeWindow()
@@ -306,7 +306,7 @@ ReminderOptions create__ReminderOptions()
 
     ::persek_protocol::initialize( & res
         , dummy::create__voice_e()
-        , ::lang_tools::dummy::create__lang_e()
+        , ::lang_tools_protocol::dummy::create__lang_e()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__bool()
         , ::basic_objects::dummy::create__TimeWindow()
@@ -326,7 +326,7 @@ Reminder create__Reminder()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__map_t<std::string, std::string, std::string(*)(), std::string(*)()>( & ::basic_parser::dummy::create__string, & ::basic_parser::dummy::create__string ) // Map
-        , ::basic_parser::dummy::create__map_t<dtmf_tools::tone_e, ReminderAction, dtmf_tools::tone_e(*)(), ReminderAction(*)()>( & ::dtmf_tools::dummy::create__tone_e, & dummy::create__ReminderAction ) // Map
+        , ::basic_parser::dummy::create__map_t<dtmf_tools_protocol::tone_e, ReminderAction, dtmf_tools_protocol::tone_e(*)(), ReminderAction(*)()>( & ::dtmf_tools_protocol::dummy::create__tone_e, & dummy::create__ReminderAction ) // Map
         , dummy::create__ReminderOptions()
         );
 
@@ -424,7 +424,7 @@ FindTemplatesRequest * create__FindTemplatesRequest()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__string()
-        , ::lang_tools::dummy::create__lang_e()
+        , ::lang_tools_protocol::dummy::create__lang_e()
         );
 
     return res;
@@ -525,7 +525,7 @@ SayFeedbackRequest * create__SayFeedbackRequest()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__uint32()
         , ::basic_parser::dummy::create__map_t<std::string, std::string, std::string(*)(), std::string(*)()>( & ::basic_parser::dummy::create__string, & ::basic_parser::dummy::create__string ) // Map
-        , ::basic_parser::dummy::create__map_t<dtmf_tools::tone_e, Action, dtmf_tools::tone_e(*)(), Action(*)()>( & ::dtmf_tools::dummy::create__tone_e, & dummy::create__Action ) // Map
+        , ::basic_parser::dummy::create__map_t<dtmf_tools_protocol::tone_e, Action, dtmf_tools_protocol::tone_e(*)(), Action(*)()>( & ::dtmf_tools_protocol::dummy::create__tone_e, & dummy::create__Action ) // Map
         , dummy::create__JobOptions()
         );
 

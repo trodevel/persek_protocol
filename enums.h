@@ -1,5 +1,5 @@
-#ifndef APG_PERSEK__ENUMS_H
-#define APG_PERSEK__ENUMS_H
+#ifndef APG_PERSEK_PROTOCOL__ENUMS_H
+#define APG_PERSEK_PROTOCOL__ENUMS_H
 
 namespace persek_protocol
 {
@@ -58,4 +58,4 @@ enum class request_type_e
 
 } // namespace persek_protocol
 
-#endif // APG_PERSEK__ENUMS_H
+#endif // APG_PERSEK_PROTOCOL__ENUMS_H

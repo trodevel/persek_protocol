@@ -93,7 +93,7 @@ bool validate( const std::string & prefix, const JobOptions & r )
 {
     validate( prefix + ".VOICE", r.voice );
     validate( prefix + ".URGENCY", r.urgency );
-    ::lang_tools::validator::validate( prefix + ".LANG", r.lang );
+    ::lang_tools_protocol::validator::validate( prefix + ".LANG", r.lang );
     validate( prefix + ".EXEC_TIME", r.exec_time );
     validate( prefix + ".MAX_TRIES", r.max_tries );
     validate( prefix + ".REDIAL_IF_NO_FEEDBACK", r.redial_if_no_feedback );
@@ -143,7 +143,7 @@ bool validate( const std::string & prefix, const TemplateInfo & r )
     validate( prefix + ".ID", r.id );
     validate( prefix + ".CATEGORY_ID", r.category_id );
     validate( prefix + ".NAME", r.name ); // String
-    ::lang_tools::validator::validate( prefix + ".LANG", r.lang );
+    ::lang_tools_protocol::validator::validate( prefix + ".LANG", r.lang );
     validate( prefix + ".LOCALIZED_NAME", r.localized_name ); // String
     validate_t( prefix + ".PLACEHOLDERS", r.placeholders, static_cast<bool (*)( const std::string &, const std::string &  )>( &validate ) ); // Array
 
@@ -197,7 +197,7 @@ bool validate( const std::string & prefix, const Contact & r )
 bool validate( const std::string & prefix, const ExtendedContactInfo & r )
 {
     validate( prefix + ".VOICE", r.voice );
-    ::lang_tools::validator::validate( prefix + ".LANG", r.lang );
+    ::lang_tools_protocol::validator::validate( prefix + ".LANG", r.lang );
     validate( prefix + ".MAX_TRIES", r.max_tries );
     validate( prefix + ".REDIAL_IF_NO_FEEDBACK", r.redial_if_no_feedback );
     ::basic_objects::validator::validate( prefix + ".TIME_WINDOW", r.time_window );
@@ -217,7 +217,7 @@ bool validate( const std::string & prefix, const ReminderAction & r )
 bool validate( const std::string & prefix, const ReminderOptions & r )
 {
     validate( prefix + ".VOICE", r.voice );
-    ::lang_tools::validator::validate( prefix + ".LANG", r.lang );
+    ::lang_tools_protocol::validator::validate( prefix + ".LANG", r.lang );
     validate( prefix + ".MAX_TRIES", r.max_tries );
     validate( prefix + ".REDIAL_IF_NO_FEEDBACK", r.redial_if_no_feedback );
     ::basic_objects::validator::validate( prefix + ".TIME_WINDOW", r.time_window );
@@ -233,7 +233,7 @@ bool validate( const std::string & prefix, const Reminder & r )
     validate( prefix + ".EFFECTIVE_TIME", r.effective_time );
     validate( prefix + ".REMIND_PERIOD", r.remind_period );
     validate_t( prefix + ".PARAMS", r.params, static_cast<bool (*)( const std::string &, const std::string &  )>( &validate ), static_cast<bool (*)( const std::string &, const std::string &  )>( &validate ) ); // Map
-    validate_t( prefix + ".ACTIONS", r.actions, static_cast<bool (*)( const std::string &, dtmf_tools::tone_e )>( &::dtmf_tools::validator::validate ), static_cast<bool (*)( const std::string &, const ReminderAction &  )>( &validate ) ); // Map
+    validate_t( prefix + ".ACTIONS", r.actions, static_cast<bool (*)( const std::string &, dtmf_tools_protocol::tone_e )>( &::dtmf_tools_protocol::validator::validate ), static_cast<bool (*)( const std::string &, const ReminderAction &  )>( &validate ) ); // Map
     validate( prefix + ".OPTIONS", r.options );
 
     return true;
@@ -340,7 +340,7 @@ bool validate( const FindTemplatesRequest & r )
     validate( "USER_ID", r.user_id );
     validate( "CATEGORY_ID", r.category_id );
     validate( "NAME_REGEX", r.name_regex ); // String
-    ::lang_tools::validator::validate( "LANG", r.lang );
+    ::lang_tools_protocol::validator::validate( "LANG", r.lang );
 
     return true;
 }
@@ -429,7 +429,7 @@ bool validate( const SayFeedbackRequest & r )
     validate( "MSG_TEMPL_ID", r.msg_templ_id );
     validate( "FEEDBACK_TEMPL_ID", r.feedback_templ_id );
     validate_t( "PARAMS", r.params, static_cast<bool (*)( const std::string &, const std::string &  )>( &validate ), static_cast<bool (*)( const std::string &, const std::string &  )>( &validate ) ); // Map
-    validate_t( "ACTIONS", r.actions, static_cast<bool (*)( const std::string &, dtmf_tools::tone_e )>( &::dtmf_tools::validator::validate ), static_cast<bool (*)( const std::string &, const Action &  )>( &validate ) ); // Map
+    validate_t( "ACTIONS", r.actions, static_cast<bool (*)( const std::string &, dtmf_tools_protocol::tone_e )>( &::dtmf_tools_protocol::validator::validate ), static_cast<bool (*)( const std::string &, const Action &  )>( &validate ) ); // Map
     validate( "OPTIONS", r.options );
 
     return true;

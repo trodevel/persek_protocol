@@ -1,5 +1,5 @@
-#ifndef APG_PERSEK__OBJECT_INITIALIZER_H
-#define APG_PERSEK__OBJECT_INITIALIZER_H
+#ifndef APG_PERSEK_PROTOCOL__OBJECT_INITIALIZER_H
+#define APG_PERSEK_PROTOCOL__OBJECT_INITIALIZER_H
 
 // includes
 #include "protocol.h"
@@ -12,7 +12,7 @@ namespace persek_protocol
 void initialize( JobOptions * res
     , voice_e voice
     , urgency_e urgency
-    , lang_tools::lang_e lang
+    , lang_tools_protocol::lang_e lang
     , uint32_t exec_time
     , uint32_t max_tries
     , bool redial_if_no_feedback
@@ -46,7 +46,7 @@ void initialize( TemplateInfo * res
     , uint32_t id
     , uint32_t category_id
     , const std::string &  name
-    , lang_tools::lang_e lang
+    , lang_tools_protocol::lang_e lang
     , const std::string &  localized_name
     , const std::vector<std::string> &  placeholders
  );
@@ -76,7 +76,7 @@ void initialize( Contact * res
  );
 void initialize( ExtendedContactInfo * res
     , voice_e voice
-    , lang_tools::lang_e lang
+    , lang_tools_protocol::lang_e lang
     , uint32_t max_tries
     , bool redial_if_no_feedback
     , const basic_objects::TimeWindow &  time_window
@@ -88,7 +88,7 @@ void initialize( ReminderAction * res
  );
 void initialize( ReminderOptions * res
     , voice_e voice
-    , lang_tools::lang_e lang
+    , lang_tools_protocol::lang_e lang
     , uint32_t max_tries
     , bool redial_if_no_feedback
     , const basic_objects::TimeWindow &  time_window
@@ -100,7 +100,7 @@ void initialize( Reminder * res
     , uint32_t effective_time
     , uint32_t remind_period
     , const std::map<std::string, std::string> &  params
-    , const std::map<dtmf_tools::tone_e, ReminderAction> &  actions
+    , const std::map<dtmf_tools_protocol::tone_e, ReminderAction> &  actions
     , const ReminderOptions &  options
  );
 
@@ -151,7 +151,7 @@ void initialize( FindTemplatesRequest * res
     , uint32_t user_id
     , uint32_t category_id
     , const std::string &  name_regex
-    , lang_tools::lang_e lang
+    , lang_tools_protocol::lang_e lang
  );
 void initialize( FindTemplatesResponse * res
     , const std::vector<TemplateInfo> &  templates
@@ -188,7 +188,7 @@ void initialize( SayFeedbackRequest * res
     , uint32_t msg_templ_id
     , uint32_t feedback_templ_id
     , const std::map<std::string, std::string> &  params
-    , const std::map<dtmf_tools::tone_e, Action> &  actions
+    , const std::map<dtmf_tools_protocol::tone_e, Action> &  actions
     , const JobOptions &  options
  );
 void initialize( SayFeedbackResponse * res
@@ -357,7 +357,7 @@ FindTemplatesRequest * create_FindTemplatesRequest(
     , uint32_t user_id
     , uint32_t category_id
     , const std::string &  name_regex
-    , lang_tools::lang_e lang
+    , lang_tools_protocol::lang_e lang
  );
 FindTemplatesResponse * create_FindTemplatesResponse(
     const std::vector<TemplateInfo> &  templates
@@ -394,7 +394,7 @@ SayFeedbackRequest * create_SayFeedbackRequest(
     , uint32_t msg_templ_id
     , uint32_t feedback_templ_id
     , const std::map<std::string, std::string> &  params
-    , const std::map<dtmf_tools::tone_e, Action> &  actions
+    , const std::map<dtmf_tools_protocol::tone_e, Action> &  actions
     , const JobOptions &  options
  );
 SayFeedbackResponse * create_SayFeedbackResponse(
@@ -526,4 +526,4 @@ GetReminderStatusRequest * create_GetReminderStatusRequest(
 
 } // namespace persek_protocol
 
-#endif // APG_PERSEK__OBJECT_INITIALIZER_H
+#endif // APG_PERSEK_PROTOCOL__OBJECT_INITIALIZER_H

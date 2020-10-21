@@ -1,5 +1,5 @@
-#ifndef APG_PERSEK__PROTOCOL_H
-#define APG_PERSEK__PROTOCOL_H
+#ifndef APG_PERSEK_PROTOCOL__PROTOCOL_H
+#define APG_PERSEK_PROTOCOL__PROTOCOL_H
 
 // system includes
 #include <vector>
@@ -112,7 +112,7 @@ struct JobOptions
 {
     voice_e              voice     ;
     urgency_e            urgency   ;
-    lang_tools::lang_e   lang      ;
+    lang_tools_protocol::lang_e lang      ;
     uint32_t             exec_time ;
     uint32_t             max_tries ;
     bool                 redial_if_no_feedback;
@@ -158,7 +158,7 @@ struct TemplateInfo
     uint32_t             id        ;
     uint32_t             category_id;
     std::string          name      ;
-    lang_tools::lang_e   lang      ;
+    lang_tools_protocol::lang_e lang      ;
     std::string          localized_name;
     std::vector<std::string> placeholders;
 };
@@ -206,7 +206,7 @@ struct Contact
 struct ExtendedContactInfo
 {
     voice_e              voice     ;
-    lang_tools::lang_e   lang      ;
+    lang_tools_protocol::lang_e lang      ;
     uint32_t             max_tries ;
     bool                 redial_if_no_feedback;
     basic_objects::TimeWindow time_window;
@@ -224,7 +224,7 @@ struct ReminderAction
 struct ReminderOptions
 {
     voice_e              voice     ;
-    lang_tools::lang_e   lang      ;
+    lang_tools_protocol::lang_e lang      ;
     uint32_t             max_tries ;
     bool                 redial_if_no_feedback;
     basic_objects::TimeWindow time_window;
@@ -239,7 +239,7 @@ struct Reminder
     uint32_t             effective_time;
     uint32_t             remind_period;
     std::map<std::string, std::string> params    ;
-    std::map<dtmf_tools::tone_e, ReminderAction> actions   ;
+    std::map<dtmf_tools_protocol::tone_e, ReminderAction> actions   ;
     ReminderOptions      options   ;
 };
 
@@ -258,7 +258,7 @@ struct GetJobInfoRequest: public Request
 {
     enum
     {
-        message_id = 1271346161
+        message_id = 247838131
     };
 
     uint32_t             user_id   ;
@@ -270,7 +270,7 @@ struct GetJobInfoResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 2483099416
+        message_id = 211170594
     };
 
     std::vector<JobInfo> jobs      ;
@@ -281,7 +281,7 @@ struct GetJobStatRequest: public Request
 {
     enum
     {
-        message_id = 1923284523
+        message_id = 933263465
     };
 
     uint32_t             user_id   ;
@@ -293,7 +293,7 @@ struct GetJobStatResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 4064168223
+        message_id = 1789487909
     };
 
     std::vector<OpenJobStatus> open_jobs ;
@@ -305,7 +305,7 @@ struct FindJobRequest: public Request
 {
     enum
     {
-        message_id = 3977482532
+        message_id = 2871333061
     };
 
     uint32_t             user_id   ;
@@ -323,7 +323,7 @@ struct FindJobResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 1646192097
+        message_id = 3042247054
     };
 
     uint32_t             total_size;
@@ -335,13 +335,13 @@ struct FindTemplatesRequest: public Request
 {
     enum
     {
-        message_id = 2884609259
+        message_id = 1529258977
     };
 
     uint32_t             user_id   ;
     uint32_t             category_id;
     std::string          name_regex;
-    lang_tools::lang_e   lang      ;
+    lang_tools_protocol::lang_e lang      ;
 };
 
 // Message
@@ -349,7 +349,7 @@ struct FindTemplatesResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 1770243829
+        message_id = 2309416684
     };
 
     std::vector<TemplateInfo> templates ;
@@ -360,7 +360,7 @@ struct CancelJobRequest: public Request
 {
     enum
     {
-        message_id = 2264595506
+        message_id = 1528875807
     };
 
     uint32_t             job_id    ;
@@ -371,7 +371,7 @@ struct CancelJobResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 2527181277
+        message_id = 3550691231
     };
 };
 
@@ -380,7 +380,7 @@ struct CancelJobsRequest: public Request
 {
     enum
     {
-        message_id = 2132275223
+        message_id = 974485077
     };
 
     std::vector<uint32_t> job_ids   ;
@@ -391,7 +391,7 @@ struct CancelJobsResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 3713826966
+        message_id = 1170973356
     };
 
     std::vector<uint32_t> cancelled_job_ids;
@@ -403,7 +403,7 @@ struct SayRequest: public Request
 {
     enum
     {
-        message_id = 2502716229
+        message_id = 1768841570
     };
 
     uint32_t             user_id   ;
@@ -418,7 +418,7 @@ struct SayResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 1490258901
+        message_id = 4247092404
     };
 
     uint32_t             job_id    ;
@@ -429,7 +429,7 @@ struct SayFeedbackRequest: public Request
 {
     enum
     {
-        message_id = 4017966943
+        message_id = 2011852133
     };
 
     uint32_t             user_id   ;
@@ -437,7 +437,7 @@ struct SayFeedbackRequest: public Request
     uint32_t             msg_templ_id;
     uint32_t             feedback_templ_id;
     std::map<std::string, std::string> params    ;
-    std::map<dtmf_tools::tone_e, Action> actions   ;
+    std::map<dtmf_tools_protocol::tone_e, Action> actions   ;
     JobOptions           options   ;
 };
 
@@ -446,7 +446,7 @@ struct SayFeedbackResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 2781553547
+        message_id = 1667198235
     };
 
     uint32_t             job_id    ;
@@ -457,7 +457,7 @@ struct AddContactPhoneRequest: public Request
 {
     enum
     {
-        message_id = 4289505603
+        message_id = 2603033763
     };
 
     uint32_t             contact_id;
@@ -469,7 +469,7 @@ struct AddContactPhoneResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 2983898658
+        message_id = 297060311
     };
 
     uint32_t             contact_phone_id;
@@ -480,7 +480,7 @@ struct ModifyContactPhoneRequest: public Request
 {
     enum
     {
-        message_id = 3445571302
+        message_id = 2432324236
     };
 
     uint32_t             contact_phone_id;
@@ -492,7 +492,7 @@ struct ModifyContactPhoneResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 391383762
+        message_id = 3127781368
     };
 };
 
@@ -501,7 +501,7 @@ struct DeleteContactPhoneRequest: public Request
 {
     enum
     {
-        message_id = 912440983
+        message_id = 1808257789
     };
 
     uint32_t             contact_phone_id;
@@ -512,7 +512,7 @@ struct DeleteContactPhoneResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 816674552
+        message_id = 2643942354
     };
 };
 
@@ -521,7 +521,7 @@ struct GetContactPhoneRequest: public Request
 {
     enum
     {
-        message_id = 4064402296
+        message_id = 2529842840
     };
 
     uint32_t             contact_phone_id;
@@ -532,7 +532,7 @@ struct GetContactPhoneResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 14461556
+        message_id = 2696070017
     };
 
     uint32_t             contact_id;
@@ -544,7 +544,7 @@ struct AddContactRequest: public Request
 {
     enum
     {
-        message_id = 3558214978
+        message_id = 2434042624
     };
 
     uint32_t             user_id   ;
@@ -556,7 +556,7 @@ struct AddContactResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 3338019856
+        message_id = 1583416874
     };
 
     uint32_t             contact_id;
@@ -567,7 +567,7 @@ struct ModifyContactRequest: public Request
 {
     enum
     {
-        message_id = 1830786728
+        message_id = 2648084898
     };
 
     uint32_t             contact_id;
@@ -579,7 +579,7 @@ struct ModifyContactResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 2257594093
+        message_id = 1723139828
     };
 };
 
@@ -588,7 +588,7 @@ struct DeleteContactRequest: public Request
 {
     enum
     {
-        message_id = 183470883
+        message_id = 4196830249
     };
 
     uint32_t             contact_id;
@@ -599,7 +599,7 @@ struct DeleteContactResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 4238183512
+        message_id = 481864769
     };
 };
 
@@ -608,7 +608,7 @@ struct GetContactRequest: public Request
 {
     enum
     {
-        message_id = 2569581716
+        message_id = 3693753046
     };
 
     uint32_t             contact_id;
@@ -619,7 +619,7 @@ struct GetContactResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 2836098376
+        message_id = 832327538
     };
 
     Contact              contact   ;
@@ -631,7 +631,7 @@ struct GetContactWithPhonesRequest: public Request
 {
     enum
     {
-        message_id = 2810842599
+        message_id = 2090663452
     };
 
     uint32_t             contact_id;
@@ -642,7 +642,7 @@ struct GetContactWithPhonesResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 1614409591
+        message_id = 1250808336
     };
 
     Contact              contact   ;
@@ -654,7 +654,7 @@ struct GetContactExtRequest: public Request
 {
     enum
     {
-        message_id = 3042615038
+        message_id = 1167301108
     };
 
     uint32_t             contact_id;
@@ -665,7 +665,7 @@ struct GetContactExtResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 71341860
+        message_id = 3831871293
     };
 
     Contact              contact   ;
@@ -678,7 +678,7 @@ struct GetExtendedContactInfoRequest: public Request
 {
     enum
     {
-        message_id = 519081638
+        message_id = 3440168544
     };
 
     uint32_t             contact_id;
@@ -689,7 +689,7 @@ struct GetExtendedContactInfoResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 1633412338
+        message_id = 328171319
     };
 
     ExtendedContactInfo  extended_info;
@@ -700,7 +700,7 @@ struct SetExtendedContactInfoRequest: public Request
 {
     enum
     {
-        message_id = 3478544754
+        message_id = 480911796
     };
 
     uint32_t             contact_id;
@@ -712,7 +712,7 @@ struct SetExtendedContactInfoResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 3761525968
+        message_id = 2464206613
     };
 };
 
@@ -721,7 +721,7 @@ struct AddReminderRequest: public Request
 {
     enum
     {
-        message_id = 698796585
+        message_id = 2972837907
     };
 
     uint32_t             contact_phone_id;
@@ -733,7 +733,7 @@ struct AddReminderResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 476785671
+        message_id = 3674170007
     };
 
     uint32_t             job_id    ;
@@ -744,7 +744,7 @@ struct ModifyReminderRequest: public Request
 {
     enum
     {
-        message_id = 1774242004
+        message_id = 2313545933
     };
 
     uint32_t             job_id    ;
@@ -757,7 +757,7 @@ struct ModifyReminderResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 3743925412
+        message_id = 3148630340
     };
 };
 
@@ -766,7 +766,7 @@ struct GetReminderRequest: public Request
 {
     enum
     {
-        message_id = 1180402545
+        message_id = 3737952587
     };
 
     uint32_t             job_id    ;
@@ -777,7 +777,7 @@ struct GetReminderResponse: public BackwardMessage
 {
     enum
     {
-        message_id = 2041841800
+        message_id = 3206563352
     };
 
     uint32_t             contact_id;
@@ -791,7 +791,7 @@ struct GetReminderStatusRequest: public Request
 {
     enum
     {
-        message_id = 962577539
+        message_id = 4096306297
     };
 
     uint32_t             user_id   ;
@@ -803,5 +803,5 @@ struct GetReminderStatusRequest: public Request
 
 } // namespace persek_protocol
 
-#endif // APG_PERSEK__PROTOCOL_H
+#endif // APG_PERSEK_PROTOCOL__PROTOCOL_H
 

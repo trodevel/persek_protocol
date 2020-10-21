@@ -1,5 +1,5 @@
-#ifndef APG_PERSEK__DUMMY_CREATOR_H
-#define APG_PERSEK__DUMMY_CREATOR_H
+#ifndef APG_PERSEK_PROTOCOL__DUMMY_CREATOR_H
+#define APG_PERSEK_PROTOCOL__DUMMY_CREATOR_H
 
 // includes
 #include "protocol.h"
@@ -94,4 +94,4 @@ GetReminderStatusRequest * create__GetReminderStatusRequest();
 
 } // namespace persek_protocol
 
-#endif // APG_PERSEK__DUMMY_CREATOR_H
+#endif // APG_PERSEK_PROTOCOL__DUMMY_CREATOR_H

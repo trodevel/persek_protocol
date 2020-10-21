@@ -3,8 +3,9 @@
 namespace persek_protocol;
 
 
-// includes
+// base include
 require_once __DIR__.'/../generic_protocol/str_helper.php';
+// includes
 require_once __DIR__.'/../basic_objects/str_helper.php';
 require_once __DIR__.'/../dtmf_tools_protocol/str_helper.php';
 require_once __DIR__.'/../lang_tools_protocol/str_helper.php';
@@ -202,7 +203,7 @@ function to_string__JobOptions( & $r )
 
     $res .= " voice=" . to_string__voice_e( $r->voice );
     $res .= " urgency=" . to_string__urgency_e( $r->urgency );
-    $res .= " lang=" . \lang_tools\to_string__lang_e( $r->lang );
+    $res .= " lang=" . \lang_tools_protocol\to_string__lang_e( $r->lang );
     $res .= " exec_time=" . \basic_parser\to_string__int( $r->exec_time );
     $res .= " max_tries=" . \basic_parser\to_string__int( $r->max_tries );
     $res .= " redial_if_no_feedback=" . \basic_parser\to_string__bool( $r->redial_if_no_feedback );
@@ -276,7 +277,7 @@ function to_string__TemplateInfo( & $r )
     $res .= " id=" . \basic_parser\to_string__int( $r->id );
     $res .= " category_id=" . \basic_parser\to_string__int( $r->category_id );
     $res .= " name=" . \basic_parser\to_string__string( $r->name );
-    $res .= " lang=" . \lang_tools\to_string__lang_e( $r->lang );
+    $res .= " lang=" . \lang_tools_protocol\to_string__lang_e( $r->lang );
     $res .= " localized_name=" . \basic_parser\to_string__string( $r->localized_name );
     $res .= " placeholders=" . \basic_parser\to_string__vector( $r->placeholders, '\basic_parser\to_string__string' ); // Array
 
@@ -366,7 +367,7 @@ function to_string__ExtendedContactInfo( & $r )
     $res .= "(";
 
     $res .= " voice=" . to_string__voice_e( $r->voice );
-    $res .= " lang=" . \lang_tools\to_string__lang_e( $r->lang );
+    $res .= " lang=" . \lang_tools_protocol\to_string__lang_e( $r->lang );
     $res .= " max_tries=" . \basic_parser\to_string__int( $r->max_tries );
     $res .= " redial_if_no_feedback=" . \basic_parser\to_string__bool( $r->redial_if_no_feedback );
     $res .= " time_window=" . \basic_objects\to_string__TimeWindow( $r->time_window );
@@ -398,7 +399,7 @@ function to_string__ReminderOptions( & $r )
     $res .= "(";
 
     $res .= " voice=" . to_string__voice_e( $r->voice );
-    $res .= " lang=" . \lang_tools\to_string__lang_e( $r->lang );
+    $res .= " lang=" . \lang_tools_protocol\to_string__lang_e( $r->lang );
     $res .= " max_tries=" . \basic_parser\to_string__int( $r->max_tries );
     $res .= " redial_if_no_feedback=" . \basic_parser\to_string__bool( $r->redial_if_no_feedback );
     $res .= " time_window=" . \basic_objects\to_string__TimeWindow( $r->time_window );
@@ -420,7 +421,7 @@ function to_string__Reminder( & $r )
     $res .= " effective_time=" . \basic_parser\to_string__int( $r->effective_time );
     $res .= " remind_period=" . \basic_parser\to_string__int( $r->remind_period );
     $res .= " params=" . \basic_parser\to_string__map( $r->params, '\basic_parser\to_string__string', '\basic_parser\to_string__string' ); // Map
-    $res .= " actions=" . \basic_parser\to_string__map( $r->actions, '\dtmf_tools\to_string__tone_e', '\persek_protocol\to_string__ReminderAction' ); // Map
+    $res .= " actions=" . \basic_parser\to_string__map( $r->actions, '\dtmf_tools_protocol\to_string__tone_e', '\persek_protocol\to_string__ReminderAction' ); // Map
     $res .= " options=" . to_string__ReminderOptions( $r->options );
 
     $res .= ")";
@@ -555,7 +556,7 @@ function to_string__FindTemplatesRequest( & $r )
     $res .= " user_id=" . \basic_parser\to_string__int( $r->user_id );
     $res .= " category_id=" . \basic_parser\to_string__int( $r->category_id );
     $res .= " name_regex=" . \basic_parser\to_string__string( $r->name_regex );
-    $res .= " lang=" . \lang_tools\to_string__lang_e( $r->lang );
+    $res .= " lang=" . \lang_tools_protocol\to_string__lang_e( $r->lang );
 
     return $res;
 }
@@ -660,7 +661,7 @@ function to_string__SayFeedbackRequest( & $r )
     $res .= " msg_templ_id=" . \basic_parser\to_string__int( $r->msg_templ_id );
     $res .= " feedback_templ_id=" . \basic_parser\to_string__int( $r->feedback_templ_id );
     $res .= " params=" . \basic_parser\to_string__map( $r->params, '\basic_parser\to_string__string', '\basic_parser\to_string__string' ); // Map
-    $res .= " actions=" . \basic_parser\to_string__map( $r->actions, '\dtmf_tools\to_string__tone_e', '\persek_protocol\to_string__Action' ); // Map
+    $res .= " actions=" . \basic_parser\to_string__map( $r->actions, '\dtmf_tools_protocol\to_string__tone_e', '\persek_protocol\to_string__Action' ); // Map
     $res .= " options=" . to_string__JobOptions( $r->options );
 
     return $res;
@@ -1145,7 +1146,7 @@ function to_string( $obj )
     return \generic_protocol\to_string( $obj );
 }
 
-# namespace_end persek_protocol
+// namespace_end persek_protocol
 
 
 ?>

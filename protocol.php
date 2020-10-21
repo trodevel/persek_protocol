@@ -77,7 +77,7 @@ class JobOptions
 {
     public $voice               ; // type: voice_e
     public $urgency             ; // type: urgency_e
-    public $lang                ; // type: lang_tools\lang_e
+    public $lang                ; // type: lang_tools_protocol\lang_e
     public $exec_time           ; // type: uint32_t
     public $max_tries           ; // type: uint32_t
     public $redial_if_no_feedback; // type: bool
@@ -123,7 +123,7 @@ class TemplateInfo
     public $id                  ; // type: uint32_t
     public $category_id         ; // type: uint32_t
     public $name                ; // type: string
-    public $lang                ; // type: lang_tools\lang_e
+    public $lang                ; // type: lang_tools_protocol\lang_e
     public $localized_name      ; // type: string
     public $placeholders        ; // type: array<string>
 };
@@ -171,7 +171,7 @@ class Contact
 class ExtendedContactInfo
 {
     public $voice               ; // type: voice_e
-    public $lang                ; // type: lang_tools\lang_e
+    public $lang                ; // type: lang_tools_protocol\lang_e
     public $max_tries           ; // type: uint32_t
     public $redial_if_no_feedback; // type: bool
     public $time_window         ; // type: basic_objects\TimeWindow
@@ -189,7 +189,7 @@ class ReminderAction
 class ReminderOptions
 {
     public $voice               ; // type: voice_e
-    public $lang                ; // type: lang_tools\lang_e
+    public $lang                ; // type: lang_tools_protocol\lang_e
     public $max_tries           ; // type: uint32_t
     public $redial_if_no_feedback; // type: bool
     public $time_window         ; // type: basic_objects\TimeWindow
@@ -204,7 +204,7 @@ class Reminder
     public $effective_time      ; // type: uint32_t
     public $remind_period       ; // type: uint32_t
     public $params              ; // type: map<string, string>
-    public $actions             ; // type: map<dtmf_tools\tone_e, ReminderAction>
+    public $actions             ; // type: map<dtmf_tools_protocol\tone_e, ReminderAction>
     public $options             ; // type: ReminderOptions
 };
 
@@ -234,7 +234,7 @@ class GetJobInfoRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1271346161;
+    const MESSAGE_ID = 247838131;
 
     public $user_id             ; // type: uint32_t
     public $job_ids             ; // type: array<uint32_t>
@@ -248,7 +248,7 @@ class GetJobInfoResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2483099416;
+    const MESSAGE_ID = 211170594;
 
     public $jobs                ; // type: array<JobInfo>
 };
@@ -261,7 +261,7 @@ class GetJobStatRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1923284523;
+    const MESSAGE_ID = 933263465;
 
     public $user_id             ; // type: uint32_t
     public $job_ids             ; // type: array<uint32_t>
@@ -275,7 +275,7 @@ class GetJobStatResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 4064168223;
+    const MESSAGE_ID = 1789487909;
 
     public $open_jobs           ; // type: array<OpenJobStatus>
     public $closed_jobs         ; // type: array<ClosedJobStatus>
@@ -289,7 +289,7 @@ class FindJobRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3977482532;
+    const MESSAGE_ID = 2871333061;
 
     public $user_id             ; // type: uint32_t
     public $status              ; // type: FindJobRequest_status_e
@@ -309,7 +309,7 @@ class FindJobResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1646192097;
+    const MESSAGE_ID = 3042247054;
 
     public $total_size          ; // type: uint32_t
     public $job_ids             ; // type: array<uint32_t>
@@ -323,12 +323,12 @@ class FindTemplatesRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2884609259;
+    const MESSAGE_ID = 1529258977;
 
     public $user_id             ; // type: uint32_t
     public $category_id         ; // type: uint32_t
     public $name_regex          ; // type: string
-    public $lang                ; // type: lang_tools\lang_e
+    public $lang                ; // type: lang_tools_protocol\lang_e
 };
 
 // Message
@@ -339,7 +339,7 @@ class FindTemplatesResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1770243829;
+    const MESSAGE_ID = 2309416684;
 
     public $templates           ; // type: array<TemplateInfo>
 };
@@ -352,7 +352,7 @@ class CancelJobRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2264595506;
+    const MESSAGE_ID = 1528875807;
 
     public $job_id              ; // type: uint32_t
 };
@@ -365,7 +365,7 @@ class CancelJobResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2527181277;
+    const MESSAGE_ID = 3550691231;
 };
 
 // Message
@@ -376,7 +376,7 @@ class CancelJobsRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2132275223;
+    const MESSAGE_ID = 974485077;
 
     public $job_ids             ; // type: array<uint32_t>
 };
@@ -389,7 +389,7 @@ class CancelJobsResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3713826966;
+    const MESSAGE_ID = 1170973356;
 
     public $cancelled_job_ids   ; // type: array<uint32_t>
     public $failed_jobs         ; // type: array<CancellationFailureReason>
@@ -403,7 +403,7 @@ class SayRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2502716229;
+    const MESSAGE_ID = 1768841570;
 
     public $user_id             ; // type: uint32_t
     public $contact_id          ; // type: string
@@ -420,7 +420,7 @@ class SayResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1490258901;
+    const MESSAGE_ID = 4247092404;
 
     public $job_id              ; // type: uint32_t
 };
@@ -433,14 +433,14 @@ class SayFeedbackRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 4017966943;
+    const MESSAGE_ID = 2011852133;
 
     public $user_id             ; // type: uint32_t
     public $contact_id          ; // type: string
     public $msg_templ_id        ; // type: uint32_t
     public $feedback_templ_id   ; // type: uint32_t
     public $params              ; // type: map<string, string>
-    public $actions             ; // type: map<dtmf_tools\tone_e, Action>
+    public $actions             ; // type: map<dtmf_tools_protocol\tone_e, Action>
     public $options             ; // type: JobOptions
 };
 
@@ -452,7 +452,7 @@ class SayFeedbackResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2781553547;
+    const MESSAGE_ID = 1667198235;
 
     public $job_id              ; // type: uint32_t
 };
@@ -465,7 +465,7 @@ class AddContactPhoneRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 4289505603;
+    const MESSAGE_ID = 2603033763;
 
     public $contact_id          ; // type: uint32_t
     public $contact_phone       ; // type: ContactPhone
@@ -479,7 +479,7 @@ class AddContactPhoneResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2983898658;
+    const MESSAGE_ID = 297060311;
 
     public $contact_phone_id    ; // type: uint32_t
 };
@@ -492,7 +492,7 @@ class ModifyContactPhoneRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3445571302;
+    const MESSAGE_ID = 2432324236;
 
     public $contact_phone_id    ; // type: uint32_t
     public $contact_phone       ; // type: ContactPhone
@@ -506,7 +506,7 @@ class ModifyContactPhoneResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 391383762;
+    const MESSAGE_ID = 3127781368;
 };
 
 // Message
@@ -517,7 +517,7 @@ class DeleteContactPhoneRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 912440983;
+    const MESSAGE_ID = 1808257789;
 
     public $contact_phone_id    ; // type: uint32_t
 };
@@ -530,7 +530,7 @@ class DeleteContactPhoneResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 816674552;
+    const MESSAGE_ID = 2643942354;
 };
 
 // Message
@@ -541,7 +541,7 @@ class GetContactPhoneRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 4064402296;
+    const MESSAGE_ID = 2529842840;
 
     public $contact_phone_id    ; // type: uint32_t
 };
@@ -554,7 +554,7 @@ class GetContactPhoneResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 14461556;
+    const MESSAGE_ID = 2696070017;
 
     public $contact_id          ; // type: uint32_t
     public $contact_phone       ; // type: ContactPhone
@@ -568,7 +568,7 @@ class AddContactRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3558214978;
+    const MESSAGE_ID = 2434042624;
 
     public $user_id             ; // type: uint32_t
     public $contact             ; // type: Contact
@@ -582,7 +582,7 @@ class AddContactResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3338019856;
+    const MESSAGE_ID = 1583416874;
 
     public $contact_id          ; // type: uint32_t
 };
@@ -595,7 +595,7 @@ class ModifyContactRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1830786728;
+    const MESSAGE_ID = 2648084898;
 
     public $contact_id          ; // type: uint32_t
     public $contact             ; // type: Contact
@@ -609,7 +609,7 @@ class ModifyContactResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2257594093;
+    const MESSAGE_ID = 1723139828;
 };
 
 // Message
@@ -620,7 +620,7 @@ class DeleteContactRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 183470883;
+    const MESSAGE_ID = 4196830249;
 
     public $contact_id          ; // type: uint32_t
 };
@@ -633,7 +633,7 @@ class DeleteContactResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 4238183512;
+    const MESSAGE_ID = 481864769;
 };
 
 // Message
@@ -644,7 +644,7 @@ class GetContactRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2569581716;
+    const MESSAGE_ID = 3693753046;
 
     public $contact_id          ; // type: uint32_t
 };
@@ -657,7 +657,7 @@ class GetContactResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2836098376;
+    const MESSAGE_ID = 832327538;
 
     public $contact             ; // type: Contact
     public $contact_phone_ids   ; // type: array<uint32_t>
@@ -671,7 +671,7 @@ class GetContactWithPhonesRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2810842599;
+    const MESSAGE_ID = 2090663452;
 
     public $contact_id          ; // type: uint32_t
 };
@@ -684,7 +684,7 @@ class GetContactWithPhonesResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1614409591;
+    const MESSAGE_ID = 1250808336;
 
     public $contact             ; // type: Contact
     public $contact_phones      ; // type: array<ContactPhoneWithId>
@@ -698,7 +698,7 @@ class GetContactExtRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3042615038;
+    const MESSAGE_ID = 1167301108;
 
     public $contact_id          ; // type: uint32_t
 };
@@ -711,7 +711,7 @@ class GetContactExtResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 71341860;
+    const MESSAGE_ID = 3831871293;
 
     public $contact             ; // type: Contact
     public $contact_phones      ; // type: array<ContactPhoneWithId>
@@ -726,7 +726,7 @@ class GetExtendedContactInfoRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 519081638;
+    const MESSAGE_ID = 3440168544;
 
     public $contact_id          ; // type: uint32_t
 };
@@ -739,7 +739,7 @@ class GetExtendedContactInfoResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1633412338;
+    const MESSAGE_ID = 328171319;
 
     public $extended_info       ; // type: ExtendedContactInfo
 };
@@ -752,7 +752,7 @@ class SetExtendedContactInfoRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3478544754;
+    const MESSAGE_ID = 480911796;
 
     public $contact_id          ; // type: uint32_t
     public $extended_info       ; // type: ExtendedContactInfo
@@ -766,7 +766,7 @@ class SetExtendedContactInfoResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3761525968;
+    const MESSAGE_ID = 2464206613;
 };
 
 // Message
@@ -777,7 +777,7 @@ class AddReminderRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 698796585;
+    const MESSAGE_ID = 2972837907;
 
     public $contact_phone_id    ; // type: uint32_t
     public $reminder            ; // type: Reminder
@@ -791,7 +791,7 @@ class AddReminderResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 476785671;
+    const MESSAGE_ID = 3674170007;
 
     public $job_id              ; // type: uint32_t
 };
@@ -804,7 +804,7 @@ class ModifyReminderRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1774242004;
+    const MESSAGE_ID = 2313545933;
 
     public $job_id              ; // type: uint32_t
     public $contact_phone_id    ; // type: uint32_t
@@ -819,7 +819,7 @@ class ModifyReminderResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 3743925412;
+    const MESSAGE_ID = 3148630340;
 };
 
 // Message
@@ -830,7 +830,7 @@ class GetReminderRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 1180402545;
+    const MESSAGE_ID = 3737952587;
 
     public $job_id              ; // type: uint32_t
 };
@@ -843,7 +843,7 @@ class GetReminderResponse extends BackwardMessage
         parent::__construct();
     }
 
-    const MESSAGE_ID = 2041841800;
+    const MESSAGE_ID = 3206563352;
 
     public $contact_id          ; // type: uint32_t
     public $contact_phone_id    ; // type: uint32_t
@@ -859,7 +859,7 @@ class GetReminderStatusRequest extends Request
         parent::__construct();
     }
 
-    const MESSAGE_ID = 962577539;
+    const MESSAGE_ID = 4096306297;
 
     public $user_id             ; // type: uint32_t
     public $search_filter       ; // type: string
@@ -868,7 +868,7 @@ class GetReminderStatusRequest extends Request
     public $page_number         ; // type: uint32_t
 };
 
-# namespace_end persek_protocol
+// namespace_end persek_protocol
 
 
 ?>

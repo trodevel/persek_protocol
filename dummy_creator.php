@@ -3,13 +3,16 @@
 namespace persek_protocol;
 
 
-// includes
+// base include
 require_once __DIR__.'/../generic_protocol/dummy_creator.php';
+// includes
 require_once __DIR__.'/../basic_parser/dummy_creator.php';
 require_once __DIR__.'/../basic_objects/dummy_creator.php';
 require_once __DIR__.'/../dtmf_tools_protocol/dummy_creator.php';
 require_once __DIR__.'/../lang_tools_protocol/dummy_creator.php';
-require_once 'object_initializer.php';
+
+// own includes
+require_once __DIR__.'/../persek_protocol/object_initializer.php';
 
 // enums
 
@@ -132,7 +135,7 @@ function create_dummy__JobOptions()
     initialize__JobOptions( $res
         , create_dummy__voice_e()
         , create_dummy__urgency_e()
-        , \lang_tools\create_dummy__lang_e()
+        , \lang_tools_protocol\create_dummy__lang_e()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__bool()
@@ -194,7 +197,7 @@ function create_dummy__TemplateInfo()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__string()
-        , \lang_tools\create_dummy__lang_e()
+        , \lang_tools_protocol\create_dummy__lang_e()
         , \basic_parser\create_dummy__string()
         , \basic_parser\create_dummy__vector( '\basic_parser\create_dummy__string' ) // Array
         );
@@ -266,7 +269,7 @@ function create_dummy__ExtendedContactInfo()
 
     initialize__ExtendedContactInfo( $res
         , create_dummy__voice_e()
-        , \lang_tools\create_dummy__lang_e()
+        , \lang_tools_protocol\create_dummy__lang_e()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__bool()
         , \basic_objects\create_dummy__TimeWindow()
@@ -292,7 +295,7 @@ function create_dummy__ReminderOptions()
 
     initialize__ReminderOptions( $res
         , create_dummy__voice_e()
-        , \lang_tools\create_dummy__lang_e()
+        , \lang_tools_protocol\create_dummy__lang_e()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__bool()
         , \basic_objects\create_dummy__TimeWindow()
@@ -311,7 +314,7 @@ function create_dummy__Reminder()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__map( '\basic_parser\create_dummy__string',  '\basic_parser\create_dummy__string' ) // Map
-        , \basic_parser\create_dummy__map( '\dtmf_tools\create_dummy__tone_e',  '\persek_protocol\create_dummy__ReminderAction' ) // Map
+        , \basic_parser\create_dummy__map( '\dtmf_tools_protocol\create_dummy__tone_e',  '\persek_protocol\create_dummy__ReminderAction' ) // Map
         , create_dummy__ReminderOptions()
         );
     return $res;
@@ -402,7 +405,7 @@ function create_dummy__FindTemplatesRequest()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__string()
-        , \lang_tools\create_dummy__lang_e()
+        , \lang_tools_protocol\create_dummy__lang_e()
         );
     return $res;
 }
@@ -495,7 +498,7 @@ function create_dummy__SayFeedbackRequest()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__int32()
         , \basic_parser\create_dummy__map( '\basic_parser\create_dummy__string',  '\basic_parser\create_dummy__string' ) // Map
-        , \basic_parser\create_dummy__map( '\dtmf_tools\create_dummy__tone_e',  '\persek_protocol\create_dummy__Action' ) // Map
+        , \basic_parser\create_dummy__map( '\dtmf_tools_protocol\create_dummy__tone_e',  '\persek_protocol\create_dummy__Action' ) // Map
         , create_dummy__JobOptions()
         );
     return $res;
@@ -851,7 +854,7 @@ function create_dummy__GetReminderStatusRequest()
     return $res;
 }
 
-# namespace_end persek_protocol
+// namespace_end persek_protocol
 
 
 ?>

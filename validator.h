@@ -1,5 +1,5 @@
-#ifndef APG_PERSEK__VALIDATOR_H
-#define APG_PERSEK__VALIDATOR_H
+#ifndef APG_PERSEK_PROTOCOL__VALIDATOR_H
+#define APG_PERSEK_PROTOCOL__VALIDATOR_H
 
 // includes
 #include "protocol.h"
@@ -95,4 +95,4 @@ bool validate( const GetReminderStatusRequest & r );
 
 } // namespace persek_protocol
 
-#endif // APG_PERSEK__VALIDATOR_H
+#endif // APG_PERSEK_PROTOCOL__VALIDATOR_H

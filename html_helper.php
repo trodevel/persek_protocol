@@ -3,13 +3,16 @@
 namespace persek_protocol;
 
 
-// includes
+// base include
 require_once __DIR__.'/../generic_protocol/html_helper.php';
+// includes
 require_once __DIR__.'/../basic_objects/html_helper.php';
 require_once __DIR__.'/../dtmf_tools_protocol/html_helper.php';
 require_once __DIR__.'/../lang_tools_protocol/html_helper.php';
 require_once __DIR__.'/../basic_parser/html_helper.php';
-require_once 'str_helper.php';
+
+// own includes
+require_once __DIR__.'/../persek_protocol/str_helper.php';
 
 // enums
 
@@ -122,7 +125,7 @@ function to_html__JobOptions( & $r )
     $data = array(
         to_html__voice_e( $r->voice ),
         to_html__urgency_e( $r->urgency ),
-        \lang_tools\to_html__lang_e( $r->lang ),
+        \lang_tools_protocol\to_html__lang_e( $r->lang ),
         \basic_parser\to_html__int( $r->exec_time ),
         \basic_parser\to_html__int( $r->max_tries ),
         \basic_parser\to_html__bool( $r->redial_if_no_feedback ),
@@ -196,7 +199,7 @@ function to_html__TemplateInfo( & $r )
         \basic_parser\to_html__int( $r->id ),
         \basic_parser\to_html__int( $r->category_id ),
         \basic_parser\to_html__string( $r->name ),
-        \lang_tools\to_html__lang_e( $r->lang ),
+        \lang_tools_protocol\to_html__lang_e( $r->lang ),
         \basic_parser\to_html__string( $r->localized_name ),
         \basic_parser\to_html__vector( $r->placeholders, '\basic_parser\to_html__string' )
         );
@@ -286,7 +289,7 @@ function to_html__ExtendedContactInfo( & $r )
 
     $data = array(
         to_html__voice_e( $r->voice ),
-        \lang_tools\to_html__lang_e( $r->lang ),
+        \lang_tools_protocol\to_html__lang_e( $r->lang ),
         \basic_parser\to_html__int( $r->max_tries ),
         \basic_parser\to_html__bool( $r->redial_if_no_feedback ),
         \basic_objects\to_html__TimeWindow( $r->time_window ),
@@ -318,7 +321,7 @@ function to_html__ReminderOptions( & $r )
 
     $data = array(
         to_html__voice_e( $r->voice ),
-        \lang_tools\to_html__lang_e( $r->lang ),
+        \lang_tools_protocol\to_html__lang_e( $r->lang ),
         \basic_parser\to_html__int( $r->max_tries ),
         \basic_parser\to_html__bool( $r->redial_if_no_feedback ),
         \basic_objects\to_html__TimeWindow( $r->time_window ),
@@ -340,7 +343,7 @@ function to_html__Reminder( & $r )
         \basic_parser\to_html__int( $r->effective_time ),
         \basic_parser\to_html__int( $r->remind_period ),
         \basic_parser\to_html__map( $r->params, '\basic_parser\to_html__string', '\basic_parser\to_html__string' ),
-        \basic_parser\to_html__map( $r->actions, '\dtmf_tools\to_html__tone_e', '\persek_protocol\to_html__ReminderAction' ),
+        \basic_parser\to_html__map( $r->actions, '\dtmf_tools_protocol\to_html__tone_e', '\persek_protocol\to_html__ReminderAction' ),
         to_html__ReminderOptions( $r->options )
         );
 
@@ -483,7 +486,7 @@ function to_html__FindTemplatesRequest( & $r )
         \basic_parser\to_html__int( $r->user_id ),
         \basic_parser\to_html__int( $r->category_id ),
         \basic_parser\to_html__string( $r->name_regex ),
-        \lang_tools\to_html__lang_e( $r->lang )
+        \lang_tools_protocol\to_html__lang_e( $r->lang )
         );
 
     $res = \basic_parser\to_html_table( $header, $data );
@@ -604,7 +607,7 @@ function to_html__SayFeedbackRequest( & $r )
         \basic_parser\to_html__int( $r->msg_templ_id ),
         \basic_parser\to_html__int( $r->feedback_templ_id ),
         \basic_parser\to_html__map( $r->params, '\basic_parser\to_html__string', '\basic_parser\to_html__string' ),
-        \basic_parser\to_html__map( $r->actions, '\dtmf_tools\to_html__tone_e', '\persek_protocol\to_html__Action' ),
+        \basic_parser\to_html__map( $r->actions, '\dtmf_tools_protocol\to_html__tone_e', '\persek_protocol\to_html__Action' ),
         to_html__JobOptions( $r->options )
         );
 
@@ -1156,7 +1159,7 @@ function to_html( $obj )
     return \generic_protocol\to_html( $obj );
 }
 
-# namespace_end persek_protocol
+// namespace_end persek_protocol
 
 
 ?>

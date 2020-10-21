@@ -97,7 +97,7 @@ std::ostream & write( std::ostream & os, const JobOptions & r )
 {
     write( os, r.voice );
     write( os, r.urgency );
-    ::lang_tools::csv_helper::write( os, r.lang );
+    ::lang_tools_protocol::csv_helper::write( os, r.lang );
     write( os, r.exec_time );
     write( os, r.max_tries );
     write( os, r.redial_if_no_feedback );
@@ -147,7 +147,7 @@ std::ostream & write( std::ostream & os, const TemplateInfo & r )
     write( os, r.id );
     write( os, r.category_id );
     write( os, r.name );
-    ::lang_tools::csv_helper::write( os, r.lang );
+    ::lang_tools_protocol::csv_helper::write( os, r.lang );
     write( os, r.localized_name );
     write_t( os, r.placeholders, static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ) ); // Array
 
@@ -201,7 +201,7 @@ std::ostream & write( std::ostream & os, const Contact & r )
 std::ostream & write( std::ostream & os, const ExtendedContactInfo & r )
 {
     write( os, r.voice );
-    ::lang_tools::csv_helper::write( os, r.lang );
+    ::lang_tools_protocol::csv_helper::write( os, r.lang );
     write( os, r.max_tries );
     write( os, r.redial_if_no_feedback );
     ::basic_objects::csv_helper::write( os, r.time_window );
@@ -221,7 +221,7 @@ std::ostream & write( std::ostream & os, const ReminderAction & r )
 std::ostream & write( std::ostream & os, const ReminderOptions & r )
 {
     write( os, r.voice );
-    ::lang_tools::csv_helper::write( os, r.lang );
+    ::lang_tools_protocol::csv_helper::write( os, r.lang );
     write( os, r.max_tries );
     write( os, r.redial_if_no_feedback );
     ::basic_objects::csv_helper::write( os, r.time_window );
@@ -237,7 +237,7 @@ std::ostream & write( std::ostream & os, const Reminder & r )
     write( os, r.effective_time );
     write( os, r.remind_period );
     write_t( os, r.params, static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ), static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ) ); // Map
-    write_t( os, r.actions, static_cast<std::ostream & (*)( std::ostream &, dtmf_tools::tone_e )>( &::dtmf_tools::csv_helper::write ), static_cast<std::ostream & (*)( std::ostream &, const ReminderAction &  )>( &write ) ); // Map
+    write_t( os, r.actions, static_cast<std::ostream & (*)( std::ostream &, dtmf_tools_protocol::tone_e )>( &::dtmf_tools_protocol::csv_helper::write ), static_cast<std::ostream & (*)( std::ostream &, const ReminderAction &  )>( &write ) ); // Map
     write( os, r.options );
 
     return os;
@@ -267,7 +267,7 @@ std::ostream & write( std::ostream & os, const BackwardMessage & r )
 
 std::ostream & write( std::ostream & os, const GetJobInfoRequest & r )
 {
-    write( os, std::string( "persek/GetJobInfoRequest" ) );
+    write( os, std::string( "persek_protocol/GetJobInfoRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -280,7 +280,7 @@ std::ostream & write( std::ostream & os, const GetJobInfoRequest & r )
 
 std::ostream & write( std::ostream & os, const GetJobInfoResponse & r )
 {
-    write( os, std::string( "persek/GetJobInfoResponse" ) );
+    write( os, std::string( "persek_protocol/GetJobInfoResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -292,7 +292,7 @@ std::ostream & write( std::ostream & os, const GetJobInfoResponse & r )
 
 std::ostream & write( std::ostream & os, const GetJobStatRequest & r )
 {
-    write( os, std::string( "persek/GetJobStatRequest" ) );
+    write( os, std::string( "persek_protocol/GetJobStatRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -305,7 +305,7 @@ std::ostream & write( std::ostream & os, const GetJobStatRequest & r )
 
 std::ostream & write( std::ostream & os, const GetJobStatResponse & r )
 {
-    write( os, std::string( "persek/GetJobStatResponse" ) );
+    write( os, std::string( "persek_protocol/GetJobStatResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -318,7 +318,7 @@ std::ostream & write( std::ostream & os, const GetJobStatResponse & r )
 
 std::ostream & write( std::ostream & os, const FindJobRequest & r )
 {
-    write( os, std::string( "persek/FindJobRequest" ) );
+    write( os, std::string( "persek_protocol/FindJobRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -337,7 +337,7 @@ std::ostream & write( std::ostream & os, const FindJobRequest & r )
 
 std::ostream & write( std::ostream & os, const FindJobResponse & r )
 {
-    write( os, std::string( "persek/FindJobResponse" ) );
+    write( os, std::string( "persek_protocol/FindJobResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -350,7 +350,7 @@ std::ostream & write( std::ostream & os, const FindJobResponse & r )
 
 std::ostream & write( std::ostream & os, const FindTemplatesRequest & r )
 {
-    write( os, std::string( "persek/FindTemplatesRequest" ) );
+    write( os, std::string( "persek_protocol/FindTemplatesRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -358,14 +358,14 @@ std::ostream & write( std::ostream & os, const FindTemplatesRequest & r )
     write( os, r.user_id );
     write( os, r.category_id );
     write( os, r.name_regex );
-    ::lang_tools::csv_helper::write( os, r.lang );
+    ::lang_tools_protocol::csv_helper::write( os, r.lang );
 
     return os;
 }
 
 std::ostream & write( std::ostream & os, const FindTemplatesResponse & r )
 {
-    write( os, std::string( "persek/FindTemplatesResponse" ) );
+    write( os, std::string( "persek_protocol/FindTemplatesResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -377,7 +377,7 @@ std::ostream & write( std::ostream & os, const FindTemplatesResponse & r )
 
 std::ostream & write( std::ostream & os, const CancelJobRequest & r )
 {
-    write( os, std::string( "persek/CancelJobRequest" ) );
+    write( os, std::string( "persek_protocol/CancelJobRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -389,7 +389,7 @@ std::ostream & write( std::ostream & os, const CancelJobRequest & r )
 
 std::ostream & write( std::ostream & os, const CancelJobResponse & r )
 {
-    write( os, std::string( "persek/CancelJobResponse" ) );
+    write( os, std::string( "persek_protocol/CancelJobResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -400,7 +400,7 @@ std::ostream & write( std::ostream & os, const CancelJobResponse & r )
 
 std::ostream & write( std::ostream & os, const CancelJobsRequest & r )
 {
-    write( os, std::string( "persek/CancelJobsRequest" ) );
+    write( os, std::string( "persek_protocol/CancelJobsRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -412,7 +412,7 @@ std::ostream & write( std::ostream & os, const CancelJobsRequest & r )
 
 std::ostream & write( std::ostream & os, const CancelJobsResponse & r )
 {
-    write( os, std::string( "persek/CancelJobsResponse" ) );
+    write( os, std::string( "persek_protocol/CancelJobsResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -425,7 +425,7 @@ std::ostream & write( std::ostream & os, const CancelJobsResponse & r )
 
 std::ostream & write( std::ostream & os, const SayRequest & r )
 {
-    write( os, std::string( "persek/SayRequest" ) );
+    write( os, std::string( "persek_protocol/SayRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -441,7 +441,7 @@ std::ostream & write( std::ostream & os, const SayRequest & r )
 
 std::ostream & write( std::ostream & os, const SayResponse & r )
 {
-    write( os, std::string( "persek/SayResponse" ) );
+    write( os, std::string( "persek_protocol/SayResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -453,7 +453,7 @@ std::ostream & write( std::ostream & os, const SayResponse & r )
 
 std::ostream & write( std::ostream & os, const SayFeedbackRequest & r )
 {
-    write( os, std::string( "persek/SayFeedbackRequest" ) );
+    write( os, std::string( "persek_protocol/SayFeedbackRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -463,7 +463,7 @@ std::ostream & write( std::ostream & os, const SayFeedbackRequest & r )
     write( os, r.msg_templ_id );
     write( os, r.feedback_templ_id );
     write_t( os, r.params, static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ), static_cast<std::ostream & (*)( std::ostream &, const std::string &  )>( &write ) ); // Map
-    write_t( os, r.actions, static_cast<std::ostream & (*)( std::ostream &, dtmf_tools::tone_e )>( &::dtmf_tools::csv_helper::write ), static_cast<std::ostream & (*)( std::ostream &, const Action &  )>( &write ) ); // Map
+    write_t( os, r.actions, static_cast<std::ostream & (*)( std::ostream &, dtmf_tools_protocol::tone_e )>( &::dtmf_tools_protocol::csv_helper::write ), static_cast<std::ostream & (*)( std::ostream &, const Action &  )>( &write ) ); // Map
     write( os, r.options );
 
     return os;
@@ -471,7 +471,7 @@ std::ostream & write( std::ostream & os, const SayFeedbackRequest & r )
 
 std::ostream & write( std::ostream & os, const SayFeedbackResponse & r )
 {
-    write( os, std::string( "persek/SayFeedbackResponse" ) );
+    write( os, std::string( "persek_protocol/SayFeedbackResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -483,7 +483,7 @@ std::ostream & write( std::ostream & os, const SayFeedbackResponse & r )
 
 std::ostream & write( std::ostream & os, const AddContactPhoneRequest & r )
 {
-    write( os, std::string( "persek/AddContactPhoneRequest" ) );
+    write( os, std::string( "persek_protocol/AddContactPhoneRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -496,7 +496,7 @@ std::ostream & write( std::ostream & os, const AddContactPhoneRequest & r )
 
 std::ostream & write( std::ostream & os, const AddContactPhoneResponse & r )
 {
-    write( os, std::string( "persek/AddContactPhoneResponse" ) );
+    write( os, std::string( "persek_protocol/AddContactPhoneResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -508,7 +508,7 @@ std::ostream & write( std::ostream & os, const AddContactPhoneResponse & r )
 
 std::ostream & write( std::ostream & os, const ModifyContactPhoneRequest & r )
 {
-    write( os, std::string( "persek/ModifyContactPhoneRequest" ) );
+    write( os, std::string( "persek_protocol/ModifyContactPhoneRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -521,7 +521,7 @@ std::ostream & write( std::ostream & os, const ModifyContactPhoneRequest & r )
 
 std::ostream & write( std::ostream & os, const ModifyContactPhoneResponse & r )
 {
-    write( os, std::string( "persek/ModifyContactPhoneResponse" ) );
+    write( os, std::string( "persek_protocol/ModifyContactPhoneResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -532,7 +532,7 @@ std::ostream & write( std::ostream & os, const ModifyContactPhoneResponse & r )
 
 std::ostream & write( std::ostream & os, const DeleteContactPhoneRequest & r )
 {
-    write( os, std::string( "persek/DeleteContactPhoneRequest" ) );
+    write( os, std::string( "persek_protocol/DeleteContactPhoneRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -544,7 +544,7 @@ std::ostream & write( std::ostream & os, const DeleteContactPhoneRequest & r )
 
 std::ostream & write( std::ostream & os, const DeleteContactPhoneResponse & r )
 {
-    write( os, std::string( "persek/DeleteContactPhoneResponse" ) );
+    write( os, std::string( "persek_protocol/DeleteContactPhoneResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -555,7 +555,7 @@ std::ostream & write( std::ostream & os, const DeleteContactPhoneResponse & r )
 
 std::ostream & write( std::ostream & os, const GetContactPhoneRequest & r )
 {
-    write( os, std::string( "persek/GetContactPhoneRequest" ) );
+    write( os, std::string( "persek_protocol/GetContactPhoneRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -567,7 +567,7 @@ std::ostream & write( std::ostream & os, const GetContactPhoneRequest & r )
 
 std::ostream & write( std::ostream & os, const GetContactPhoneResponse & r )
 {
-    write( os, std::string( "persek/GetContactPhoneResponse" ) );
+    write( os, std::string( "persek_protocol/GetContactPhoneResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -580,7 +580,7 @@ std::ostream & write( std::ostream & os, const GetContactPhoneResponse & r )
 
 std::ostream & write( std::ostream & os, const AddContactRequest & r )
 {
-    write( os, std::string( "persek/AddContactRequest" ) );
+    write( os, std::string( "persek_protocol/AddContactRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -593,7 +593,7 @@ std::ostream & write( std::ostream & os, const AddContactRequest & r )
 
 std::ostream & write( std::ostream & os, const AddContactResponse & r )
 {
-    write( os, std::string( "persek/AddContactResponse" ) );
+    write( os, std::string( "persek_protocol/AddContactResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -605,7 +605,7 @@ std::ostream & write( std::ostream & os, const AddContactResponse & r )
 
 std::ostream & write( std::ostream & os, const ModifyContactRequest & r )
 {
-    write( os, std::string( "persek/ModifyContactRequest" ) );
+    write( os, std::string( "persek_protocol/ModifyContactRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -618,7 +618,7 @@ std::ostream & write( std::ostream & os, const ModifyContactRequest & r )
 
 std::ostream & write( std::ostream & os, const ModifyContactResponse & r )
 {
-    write( os, std::string( "persek/ModifyContactResponse" ) );
+    write( os, std::string( "persek_protocol/ModifyContactResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -629,7 +629,7 @@ std::ostream & write( std::ostream & os, const ModifyContactResponse & r )
 
 std::ostream & write( std::ostream & os, const DeleteContactRequest & r )
 {
-    write( os, std::string( "persek/DeleteContactRequest" ) );
+    write( os, std::string( "persek_protocol/DeleteContactRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -641,7 +641,7 @@ std::ostream & write( std::ostream & os, const DeleteContactRequest & r )
 
 std::ostream & write( std::ostream & os, const DeleteContactResponse & r )
 {
-    write( os, std::string( "persek/DeleteContactResponse" ) );
+    write( os, std::string( "persek_protocol/DeleteContactResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -652,7 +652,7 @@ std::ostream & write( std::ostream & os, const DeleteContactResponse & r )
 
 std::ostream & write( std::ostream & os, const GetContactRequest & r )
 {
-    write( os, std::string( "persek/GetContactRequest" ) );
+    write( os, std::string( "persek_protocol/GetContactRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -664,7 +664,7 @@ std::ostream & write( std::ostream & os, const GetContactRequest & r )
 
 std::ostream & write( std::ostream & os, const GetContactResponse & r )
 {
-    write( os, std::string( "persek/GetContactResponse" ) );
+    write( os, std::string( "persek_protocol/GetContactResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -677,7 +677,7 @@ std::ostream & write( std::ostream & os, const GetContactResponse & r )
 
 std::ostream & write( std::ostream & os, const GetContactWithPhonesRequest & r )
 {
-    write( os, std::string( "persek/GetContactWithPhonesRequest" ) );
+    write( os, std::string( "persek_protocol/GetContactWithPhonesRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -689,7 +689,7 @@ std::ostream & write( std::ostream & os, const GetContactWithPhonesRequest & r )
 
 std::ostream & write( std::ostream & os, const GetContactWithPhonesResponse & r )
 {
-    write( os, std::string( "persek/GetContactWithPhonesResponse" ) );
+    write( os, std::string( "persek_protocol/GetContactWithPhonesResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -702,7 +702,7 @@ std::ostream & write( std::ostream & os, const GetContactWithPhonesResponse & r 
 
 std::ostream & write( std::ostream & os, const GetContactExtRequest & r )
 {
-    write( os, std::string( "persek/GetContactExtRequest" ) );
+    write( os, std::string( "persek_protocol/GetContactExtRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -714,7 +714,7 @@ std::ostream & write( std::ostream & os, const GetContactExtRequest & r )
 
 std::ostream & write( std::ostream & os, const GetContactExtResponse & r )
 {
-    write( os, std::string( "persek/GetContactExtResponse" ) );
+    write( os, std::string( "persek_protocol/GetContactExtResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -728,7 +728,7 @@ std::ostream & write( std::ostream & os, const GetContactExtResponse & r )
 
 std::ostream & write( std::ostream & os, const GetExtendedContactInfoRequest & r )
 {
-    write( os, std::string( "persek/GetExtendedContactInfoRequest" ) );
+    write( os, std::string( "persek_protocol/GetExtendedContactInfoRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -740,7 +740,7 @@ std::ostream & write( std::ostream & os, const GetExtendedContactInfoRequest & r
 
 std::ostream & write( std::ostream & os, const GetExtendedContactInfoResponse & r )
 {
-    write( os, std::string( "persek/GetExtendedContactInfoResponse" ) );
+    write( os, std::string( "persek_protocol/GetExtendedContactInfoResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -752,7 +752,7 @@ std::ostream & write( std::ostream & os, const GetExtendedContactInfoResponse & 
 
 std::ostream & write( std::ostream & os, const SetExtendedContactInfoRequest & r )
 {
-    write( os, std::string( "persek/SetExtendedContactInfoRequest" ) );
+    write( os, std::string( "persek_protocol/SetExtendedContactInfoRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -765,7 +765,7 @@ std::ostream & write( std::ostream & os, const SetExtendedContactInfoRequest & r
 
 std::ostream & write( std::ostream & os, const SetExtendedContactInfoResponse & r )
 {
-    write( os, std::string( "persek/SetExtendedContactInfoResponse" ) );
+    write( os, std::string( "persek_protocol/SetExtendedContactInfoResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -776,7 +776,7 @@ std::ostream & write( std::ostream & os, const SetExtendedContactInfoResponse & 
 
 std::ostream & write( std::ostream & os, const AddReminderRequest & r )
 {
-    write( os, std::string( "persek/AddReminderRequest" ) );
+    write( os, std::string( "persek_protocol/AddReminderRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -789,7 +789,7 @@ std::ostream & write( std::ostream & os, const AddReminderRequest & r )
 
 std::ostream & write( std::ostream & os, const AddReminderResponse & r )
 {
-    write( os, std::string( "persek/AddReminderResponse" ) );
+    write( os, std::string( "persek_protocol/AddReminderResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -801,7 +801,7 @@ std::ostream & write( std::ostream & os, const AddReminderResponse & r )
 
 std::ostream & write( std::ostream & os, const ModifyReminderRequest & r )
 {
-    write( os, std::string( "persek/ModifyReminderRequest" ) );
+    write( os, std::string( "persek_protocol/ModifyReminderRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -815,7 +815,7 @@ std::ostream & write( std::ostream & os, const ModifyReminderRequest & r )
 
 std::ostream & write( std::ostream & os, const ModifyReminderResponse & r )
 {
-    write( os, std::string( "persek/ModifyReminderResponse" ) );
+    write( os, std::string( "persek_protocol/ModifyReminderResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -826,7 +826,7 @@ std::ostream & write( std::ostream & os, const ModifyReminderResponse & r )
 
 std::ostream & write( std::ostream & os, const GetReminderRequest & r )
 {
-    write( os, std::string( "persek/GetReminderRequest" ) );
+    write( os, std::string( "persek_protocol/GetReminderRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );
@@ -838,7 +838,7 @@ std::ostream & write( std::ostream & os, const GetReminderRequest & r )
 
 std::ostream & write( std::ostream & os, const GetReminderResponse & r )
 {
-    write( os, std::string( "persek/GetReminderResponse" ) );
+    write( os, std::string( "persek_protocol/GetReminderResponse" ) );
 
     // base class
     csv_helper::write( os, static_cast<const BackwardMessage&>( r ) );
@@ -853,7 +853,7 @@ std::ostream & write( std::ostream & os, const GetReminderResponse & r )
 
 std::ostream & write( std::ostream & os, const GetReminderStatusRequest & r )
 {
-    write( os, std::string( "persek/GetReminderStatusRequest" ) );
+    write( os, std::string( "persek_protocol/GetReminderStatusRequest" ) );
 
     // base class
     csv_helper::write( os, static_cast<const Request&>( r ) );

@@ -1,5 +1,5 @@
-#ifndef APG_PERSEK__CSV_HELPER_H
-#define APG_PERSEK__CSV_HELPER_H
+#ifndef APG_PERSEK_PROTOCOL__CSV_HELPER_H
+#define APG_PERSEK_PROTOCOL__CSV_HELPER_H
 
 // system includes
 #include <sstream>
@@ -111,4 +111,4 @@ std::string to_csv( const T & l )
 
 } // namespace persek_protocol
 
-#endif // APG_PERSEK__CSV_HELPER_H
+#endif // APG_PERSEK_PROTOCOL__CSV_HELPER_H

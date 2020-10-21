@@ -3,11 +3,11 @@
 namespace persek_protocol;
 
 
-// includes
-require_once 'protocol.php';
-require_once 'dummy_creator.php';
-require_once 'str_helper.php';
-require_once 'request_encoder.php';
+// own includes
+require_once __DIR__.'/../persek_protocol/protocol.php';
+require_once __DIR__.'/../persek_protocol/dummy_creator.php';
+require_once __DIR__.'/../persek_protocol/str_helper.php';
+require_once __DIR__.'/../persek_protocol/request_encoder.php';
 
 # objects
 
@@ -653,7 +653,7 @@ function example_GetReminderStatusRequest()
 
 }
 
-# namespace_end persek_protocol
+// namespace_end persek_protocol
 
 
 ?>

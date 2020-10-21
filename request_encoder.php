@@ -3,8 +3,9 @@
 namespace persek_protocol;
 
 
-// includes
+// base include
 require_once __DIR__.'/../generic_protocol/request_encoder.php';
+// includes
 require_once __DIR__.'/../basic_objects/request_encoder.php';
 require_once __DIR__.'/../dtmf_tools_protocol/request_encoder.php';
 require_once __DIR__.'/../lang_tools_protocol/request_encoder.php';
@@ -89,7 +90,7 @@ function to_generic_request__JobOptions( $prefix, & $r )
     $res = "";
     $res .= "&" . to_generic_request__voice_e( $prefix . ".VOICE", $r->voice );
     $res .= "&" . to_generic_request__urgency_e( $prefix . ".URGENCY", $r->urgency );
-    $res .= "&" . \lang_tools\to_generic_request__lang_e( $prefix . ".LANG", $r->lang );
+    $res .= "&" . \lang_tools_protocol\to_generic_request__lang_e( $prefix . ".LANG", $r->lang );
     $res .= "&" . \basic_parser\to_generic_request__int( $prefix . ".EXEC_TIME", $r->exec_time );
     $res .= "&" . \basic_parser\to_generic_request__int( $prefix . ".MAX_TRIES", $r->max_tries );
     $res .= "&" . \basic_parser\to_generic_request__bool( $prefix . ".REDIAL_IF_NO_FEEDBACK", $r->redial_if_no_feedback );
@@ -143,7 +144,7 @@ function to_generic_request__TemplateInfo( $prefix, & $r )
     $res .= "&" . \basic_parser\to_generic_request__int( $prefix . ".ID", $r->id );
     $res .= "&" . \basic_parser\to_generic_request__int( $prefix . ".CATEGORY_ID", $r->category_id );
     $res .= "&" . \basic_parser\to_generic_request__string( $prefix . ".NAME", $r->name );
-    $res .= "&" . \lang_tools\to_generic_request__lang_e( $prefix . ".LANG", $r->lang );
+    $res .= "&" . \lang_tools_protocol\to_generic_request__lang_e( $prefix . ".LANG", $r->lang );
     $res .= "&" . \basic_parser\to_generic_request__string( $prefix . ".LOCALIZED_NAME", $r->localized_name );
     $res .= "&" . \basic_parser\to_generic_request__vector( $prefix . ".PLACEHOLDERS", $r->placeholders, '\basic_parser\to_generic_request__string' ); // Array
 
@@ -203,7 +204,7 @@ function to_generic_request__ExtendedContactInfo( $prefix, & $r )
 {
     $res = "";
     $res .= "&" . to_generic_request__voice_e( $prefix . ".VOICE", $r->voice );
-    $res .= "&" . \lang_tools\to_generic_request__lang_e( $prefix . ".LANG", $r->lang );
+    $res .= "&" . \lang_tools_protocol\to_generic_request__lang_e( $prefix . ".LANG", $r->lang );
     $res .= "&" . \basic_parser\to_generic_request__int( $prefix . ".MAX_TRIES", $r->max_tries );
     $res .= "&" . \basic_parser\to_generic_request__bool( $prefix . ".REDIAL_IF_NO_FEEDBACK", $r->redial_if_no_feedback );
     $res .= "&" . \basic_objects\to_generic_request__TimeWindow( $prefix . ".TIME_WINDOW", $r->time_window );
@@ -225,7 +226,7 @@ function to_generic_request__ReminderOptions( $prefix, & $r )
 {
     $res = "";
     $res .= "&" . to_generic_request__voice_e( $prefix . ".VOICE", $r->voice );
-    $res .= "&" . \lang_tools\to_generic_request__lang_e( $prefix . ".LANG", $r->lang );
+    $res .= "&" . \lang_tools_protocol\to_generic_request__lang_e( $prefix . ".LANG", $r->lang );
     $res .= "&" . \basic_parser\to_generic_request__int( $prefix . ".MAX_TRIES", $r->max_tries );
     $res .= "&" . \basic_parser\to_generic_request__bool( $prefix . ".REDIAL_IF_NO_FEEDBACK", $r->redial_if_no_feedback );
     $res .= "&" . \basic_objects\to_generic_request__TimeWindow( $prefix . ".TIME_WINDOW", $r->time_window );
@@ -242,7 +243,7 @@ function to_generic_request__Reminder( $prefix, & $r )
     $res .= "&" . \basic_parser\to_generic_request__int( $prefix . ".EFFECTIVE_TIME", $r->effective_time );
     $res .= "&" . \basic_parser\to_generic_request__int( $prefix . ".REMIND_PERIOD", $r->remind_period );
     $res .= "&" . \basic_parser\to_generic_request__map( $prefix . ".PARAMS", $r->params, '\basic_parser\to_generic_request__string', '\basic_parser\to_generic_request__string' ); // Map
-    $res .= "&" . \basic_parser\to_generic_request__map( $prefix . ".ACTIONS", $r->actions, '\dtmf_tools\to_generic_request__tone_e', '\persek_protocol\to_generic_request__ReminderAction' ); // Map
+    $res .= "&" . \basic_parser\to_generic_request__map( $prefix . ".ACTIONS", $r->actions, '\dtmf_tools_protocol\to_generic_request__tone_e', '\persek_protocol\to_generic_request__ReminderAction' ); // Map
     $res .= "&" . to_generic_request__ReminderOptions( $prefix . ".OPTIONS", $r->options );
 
     return $res;
@@ -275,7 +276,7 @@ function to_generic_request__BackwardMessage( & $r )
 function to_generic_request__GetJobInfoRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetJobInfoRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetJobInfoRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -289,7 +290,7 @@ function to_generic_request__GetJobInfoRequest( & $r )
 function to_generic_request__GetJobInfoResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetJobInfoResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetJobInfoResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -302,7 +303,7 @@ function to_generic_request__GetJobInfoResponse( & $r )
 function to_generic_request__GetJobStatRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetJobStatRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetJobStatRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -316,7 +317,7 @@ function to_generic_request__GetJobStatRequest( & $r )
 function to_generic_request__GetJobStatResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetJobStatResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetJobStatResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -330,7 +331,7 @@ function to_generic_request__GetJobStatResponse( & $r )
 function to_generic_request__FindJobRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/FindJobRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/FindJobRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -350,7 +351,7 @@ function to_generic_request__FindJobRequest( & $r )
 function to_generic_request__FindJobResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/FindJobResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/FindJobResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -364,7 +365,7 @@ function to_generic_request__FindJobResponse( & $r )
 function to_generic_request__FindTemplatesRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/FindTemplatesRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/FindTemplatesRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -372,7 +373,7 @@ function to_generic_request__FindTemplatesRequest( & $r )
     $res .= "&" . \basic_parser\to_generic_request__int( "USER_ID", $r->user_id );
     $res .= "&" . \basic_parser\to_generic_request__int( "CATEGORY_ID", $r->category_id );
     $res .= "&" . \basic_parser\to_generic_request__string( "NAME_REGEX", $r->name_regex );
-    $res .= "&" . \lang_tools\to_generic_request__lang_e( "LANG", $r->lang );
+    $res .= "&" . \lang_tools_protocol\to_generic_request__lang_e( "LANG", $r->lang );
 
     return $res;
 }
@@ -380,7 +381,7 @@ function to_generic_request__FindTemplatesRequest( & $r )
 function to_generic_request__FindTemplatesResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/FindTemplatesResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/FindTemplatesResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -393,7 +394,7 @@ function to_generic_request__FindTemplatesResponse( & $r )
 function to_generic_request__CancelJobRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/CancelJobRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/CancelJobRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -406,7 +407,7 @@ function to_generic_request__CancelJobRequest( & $r )
 function to_generic_request__CancelJobResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/CancelJobResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/CancelJobResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -418,7 +419,7 @@ function to_generic_request__CancelJobResponse( & $r )
 function to_generic_request__CancelJobsRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/CancelJobsRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/CancelJobsRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -431,7 +432,7 @@ function to_generic_request__CancelJobsRequest( & $r )
 function to_generic_request__CancelJobsResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/CancelJobsResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/CancelJobsResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -445,7 +446,7 @@ function to_generic_request__CancelJobsResponse( & $r )
 function to_generic_request__SayRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/SayRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/SayRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -462,7 +463,7 @@ function to_generic_request__SayRequest( & $r )
 function to_generic_request__SayResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/SayResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/SayResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -475,7 +476,7 @@ function to_generic_request__SayResponse( & $r )
 function to_generic_request__SayFeedbackRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/SayFeedbackRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/SayFeedbackRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -485,7 +486,7 @@ function to_generic_request__SayFeedbackRequest( & $r )
     $res .= "&" . \basic_parser\to_generic_request__int( "MSG_TEMPL_ID", $r->msg_templ_id );
     $res .= "&" . \basic_parser\to_generic_request__int( "FEEDBACK_TEMPL_ID", $r->feedback_templ_id );
     $res .= "&" . \basic_parser\to_generic_request__map( "PARAMS", $r->params, '\basic_parser\to_generic_request__string', '\basic_parser\to_generic_request__string' ); // Map
-    $res .= "&" . \basic_parser\to_generic_request__map( "ACTIONS", $r->actions, '\dtmf_tools\to_generic_request__tone_e', '\persek_protocol\to_generic_request__Action' ); // Map
+    $res .= "&" . \basic_parser\to_generic_request__map( "ACTIONS", $r->actions, '\dtmf_tools_protocol\to_generic_request__tone_e', '\persek_protocol\to_generic_request__Action' ); // Map
     $res .= "&" . to_generic_request__JobOptions( "OPTIONS", $r->options );
 
     return $res;
@@ -494,7 +495,7 @@ function to_generic_request__SayFeedbackRequest( & $r )
 function to_generic_request__SayFeedbackResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/SayFeedbackResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/SayFeedbackResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -507,7 +508,7 @@ function to_generic_request__SayFeedbackResponse( & $r )
 function to_generic_request__AddContactPhoneRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/AddContactPhoneRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/AddContactPhoneRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -521,7 +522,7 @@ function to_generic_request__AddContactPhoneRequest( & $r )
 function to_generic_request__AddContactPhoneResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/AddContactPhoneResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/AddContactPhoneResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -534,7 +535,7 @@ function to_generic_request__AddContactPhoneResponse( & $r )
 function to_generic_request__ModifyContactPhoneRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/ModifyContactPhoneRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/ModifyContactPhoneRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -548,7 +549,7 @@ function to_generic_request__ModifyContactPhoneRequest( & $r )
 function to_generic_request__ModifyContactPhoneResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/ModifyContactPhoneResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/ModifyContactPhoneResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -560,7 +561,7 @@ function to_generic_request__ModifyContactPhoneResponse( & $r )
 function to_generic_request__DeleteContactPhoneRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/DeleteContactPhoneRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/DeleteContactPhoneRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -573,7 +574,7 @@ function to_generic_request__DeleteContactPhoneRequest( & $r )
 function to_generic_request__DeleteContactPhoneResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/DeleteContactPhoneResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/DeleteContactPhoneResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -585,7 +586,7 @@ function to_generic_request__DeleteContactPhoneResponse( & $r )
 function to_generic_request__GetContactPhoneRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetContactPhoneRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetContactPhoneRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -598,7 +599,7 @@ function to_generic_request__GetContactPhoneRequest( & $r )
 function to_generic_request__GetContactPhoneResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetContactPhoneResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetContactPhoneResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -612,7 +613,7 @@ function to_generic_request__GetContactPhoneResponse( & $r )
 function to_generic_request__AddContactRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/AddContactRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/AddContactRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -626,7 +627,7 @@ function to_generic_request__AddContactRequest( & $r )
 function to_generic_request__AddContactResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/AddContactResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/AddContactResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -639,7 +640,7 @@ function to_generic_request__AddContactResponse( & $r )
 function to_generic_request__ModifyContactRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/ModifyContactRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/ModifyContactRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -653,7 +654,7 @@ function to_generic_request__ModifyContactRequest( & $r )
 function to_generic_request__ModifyContactResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/ModifyContactResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/ModifyContactResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -665,7 +666,7 @@ function to_generic_request__ModifyContactResponse( & $r )
 function to_generic_request__DeleteContactRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/DeleteContactRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/DeleteContactRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -678,7 +679,7 @@ function to_generic_request__DeleteContactRequest( & $r )
 function to_generic_request__DeleteContactResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/DeleteContactResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/DeleteContactResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -690,7 +691,7 @@ function to_generic_request__DeleteContactResponse( & $r )
 function to_generic_request__GetContactRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetContactRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetContactRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -703,7 +704,7 @@ function to_generic_request__GetContactRequest( & $r )
 function to_generic_request__GetContactResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetContactResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetContactResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -717,7 +718,7 @@ function to_generic_request__GetContactResponse( & $r )
 function to_generic_request__GetContactWithPhonesRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetContactWithPhonesRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetContactWithPhonesRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -730,7 +731,7 @@ function to_generic_request__GetContactWithPhonesRequest( & $r )
 function to_generic_request__GetContactWithPhonesResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetContactWithPhonesResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetContactWithPhonesResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -744,7 +745,7 @@ function to_generic_request__GetContactWithPhonesResponse( & $r )
 function to_generic_request__GetContactExtRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetContactExtRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetContactExtRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -757,7 +758,7 @@ function to_generic_request__GetContactExtRequest( & $r )
 function to_generic_request__GetContactExtResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetContactExtResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetContactExtResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -772,7 +773,7 @@ function to_generic_request__GetContactExtResponse( & $r )
 function to_generic_request__GetExtendedContactInfoRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetExtendedContactInfoRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetExtendedContactInfoRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -785,7 +786,7 @@ function to_generic_request__GetExtendedContactInfoRequest( & $r )
 function to_generic_request__GetExtendedContactInfoResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetExtendedContactInfoResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetExtendedContactInfoResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -798,7 +799,7 @@ function to_generic_request__GetExtendedContactInfoResponse( & $r )
 function to_generic_request__SetExtendedContactInfoRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/SetExtendedContactInfoRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/SetExtendedContactInfoRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -812,7 +813,7 @@ function to_generic_request__SetExtendedContactInfoRequest( & $r )
 function to_generic_request__SetExtendedContactInfoResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/SetExtendedContactInfoResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/SetExtendedContactInfoResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -824,7 +825,7 @@ function to_generic_request__SetExtendedContactInfoResponse( & $r )
 function to_generic_request__AddReminderRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/AddReminderRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/AddReminderRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -838,7 +839,7 @@ function to_generic_request__AddReminderRequest( & $r )
 function to_generic_request__AddReminderResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/AddReminderResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/AddReminderResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -851,7 +852,7 @@ function to_generic_request__AddReminderResponse( & $r )
 function to_generic_request__ModifyReminderRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/ModifyReminderRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/ModifyReminderRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -866,7 +867,7 @@ function to_generic_request__ModifyReminderRequest( & $r )
 function to_generic_request__ModifyReminderResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/ModifyReminderResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/ModifyReminderResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -878,7 +879,7 @@ function to_generic_request__ModifyReminderResponse( & $r )
 function to_generic_request__GetReminderRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetReminderRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetReminderRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -891,7 +892,7 @@ function to_generic_request__GetReminderRequest( & $r )
 function to_generic_request__GetReminderResponse( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetReminderResponse" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetReminderResponse" );
 
     // base class
     $res .= to_generic_request__BackwardMessage( $r );
@@ -907,7 +908,7 @@ function to_generic_request__GetReminderResponse( & $r )
 function to_generic_request__GetReminderStatusRequest( & $r )
 {
     // name
-    $res = \basic_parser\to_generic_request__string( "CMD", "persek/GetReminderStatusRequest" );
+    $res = \basic_parser\to_generic_request__string( "CMD", "persek_protocol/GetReminderStatusRequest" );
 
     // base class
     $res .= to_generic_request__Request( $r );
@@ -987,7 +988,7 @@ function to_generic_request( $obj )
     return \generic_protocol\to_generic_request( $obj );
 }
 
-# namespace_end persek_protocol
+// namespace_end persek_protocol
 
 
 ?>

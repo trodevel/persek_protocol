@@ -1,5 +1,5 @@
-#ifndef APG_PERSEK__PARSER_H
-#define APG_PERSEK__PARSER_H
+#ifndef APG_PERSEK_PROTOCOL__PARSER_H
+#define APG_PERSEK_PROTOCOL__PARSER_H
 
 // includes
 #include "generic_request/request.h"
@@ -157,4 +157,4 @@ Object * to_GetReminderStatusRequest( const generic_request::Request & r );
 
 } // namespace persek_protocol
 
-#endif // APG_PERSEK__PARSER_H
+#endif // APG_PERSEK_PROTOCOL__PARSER_H
