@@ -18,11 +18,11 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-# $Revision: 13531 $ $Date:: 2020-08-20 #$ $Author: serge $
+# $Revision: 14000 $ $Date:: 2020-10-22 #$ $Author: serge $
 
 ############################################################
 
-protocol persek
+protocol persek_protocol
 
 ############################################################
 
@@ -72,7 +72,7 @@ obj JobOptions
 
     e voice_e           voice
     e urgency_e         urgency
-    e lang_tools::lang_e lang
+    e lang_tools_protocol::lang_e lang
     uint32              exec_time      // epoch, seconds
     uint32              max_tries
     bool                redial_if_no_feedback
@@ -214,7 +214,7 @@ msg FindTemplatesRequest: Request
 
     string              name_regex
 
-    e lang_tools::lang_e lang
+    e lang_tools_protocol::lang_e lang
 
 msg_end
 
@@ -223,7 +223,7 @@ obj TemplateInfo
     uint32              id
     uint32              category_id
     string              name
-    e lang_tools::lang_e lang
+    e lang_tools_protocol::lang_e lang
     string              localized_name
     array<string>       placeholders
 
@@ -305,7 +305,7 @@ msg SayFeedbackRequest: Request
     uint32          msg_templ_id
     uint32          feedback_templ_id
     map<string,string>                      params
-    map<e dtmf_tools::tone_e, o Action>     actions
+    map<e dtmf_tools_protocol::tone_e, o Action>     actions
 
     o JobOptions     options
 
@@ -407,7 +407,7 @@ obj_end
 obj ExtendedContactInfo
 
     e voice_e               voice
-    e lang_tools::lang_e    lang
+    e lang_tools_protocol::lang_e    lang
     uint32                  max_tries
     bool                    redial_if_no_feedback
     o basic_objects::TimeWindow time_window
@@ -531,7 +531,7 @@ obj_end
 obj ReminderOptions
 
     e voice_e           voice
-    e lang_tools::lang_e lang
+    e lang_tools_protocol::lang_e lang
     uint32              max_tries
     bool                redial_if_no_feedback
     o basic_objects::TimeWindow time_window
@@ -546,7 +546,7 @@ obj Reminder
     uint32          effective_time         // epoch timestamp in sec
     uint32          remind_period          // remind period in min
     map<string,string>     params
-    map<e dtmf_tools::tone_e, o ReminderAction> actions
+    map<e dtmf_tools_protocol::tone_e, o ReminderAction> actions
 
     o ReminderOptions options
 
